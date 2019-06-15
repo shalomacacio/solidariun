@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('welcome');})->name('site');
 
-Route::resource('campanhas', 'CampanhasController');
+Route::apiResource('campanhas', 'CampanhasController');

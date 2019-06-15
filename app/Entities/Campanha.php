@@ -32,5 +32,17 @@ class Campanha extends Model implements Transformable
         'category_id',
         'user_id'
     ];
+    public function getreduceDescriptionAttribute()
+    {
+       return substr($this->getAttribute('desctiption'), 0, 25);
+    }
+
+    public function percentual()
+    {
+        $result = (100/$this->goal ) * $this->reached;
+        return $result;
+    }
+
+    
 
 }

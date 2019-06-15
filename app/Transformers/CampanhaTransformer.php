@@ -25,9 +25,10 @@ class CampanhaTransformer extends TransformerAbstract
             'id'         => (int) $model->id,
 
             /* place your other model properties here */
-
+            'percentual' => percent($model),
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
+
     }
 }

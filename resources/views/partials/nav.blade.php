@@ -7,13 +7,13 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html" title="uiCookies:Enlight">Solidariun</a>
+            <a class="navbar-brand" href="{{ route('site') }}" title="uiCookies:Enlight">Solidariun</a>
           </div>
 
           <div id="navbar-collapse" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="index.html">Home</a></li>
-              <li><a href="causes.html">Campanhas</a></li>             
+              <li class="active"><a href="{{ route('site') }}">Home</a></li>
+              <li><a href="{{ route('campanhas.index') }}">Campanhas</a></li>             
               <li class="probootstra-cta-button last"><a href="donate.html" class="btn btn-primary">Criar Campanha</a></li>
             </ul>
           </div>
