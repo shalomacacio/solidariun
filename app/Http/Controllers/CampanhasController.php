@@ -61,6 +61,10 @@ class CampanhasController extends Controller
         return view('campanhas.index', compact('campanhas'));
     }
 
+    public function create(){
+        return view('campanhas.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -72,6 +76,7 @@ class CampanhasController extends Controller
      */
     public function store(CampanhaCreateRequest $request)
     {
+        return dd($request);
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
@@ -97,7 +102,8 @@ class CampanhasController extends Controller
                 ]);
             }
 
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            // return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return $e->getMessageBag()->withInput();
         }
     }
 

@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="{{ route('site') }}">Home</a></li>
               <li><a href="{{ route('campanhas.index') }}">Campanhas</a></li>             
-              <li class="probootstra-cta-button last"><a href="donate.html" class="btn btn-primary">Criar Campanha</a></li>
+              <li class="probootstra-cta-button last"><a href="{{ route('campanhas.create') }}" class="btn btn-primary">Criar Campanha</a></li>
             </ul>
           </div>
         </div>

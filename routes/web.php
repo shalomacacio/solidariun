@@ -13,4 +13,4 @@
 
 Route::get('/', function () {return view('welcome');})->name('site');
 
-Route::apiResource('campanhas', 'CampanhasController');
+Route::resource('campanhas', 'CampanhasController');

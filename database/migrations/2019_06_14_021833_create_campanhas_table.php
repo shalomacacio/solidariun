@@ -17,8 +17,9 @@ class CreateCampanhasTable extends Migration
 	{
 		Schema::create('campanhas', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('title')->notNul();
-            $table->text('description')->notNul();
+			$table->string('title')->unique()->notNul();
+			$table->text('description_short')->notNul();
+			$table->text('description_full')->notNul();
             $table->decimal('goal')->notNul();
             $table->decimal('reached')->notNul()->default(0);
             $table->dateTime('dt_final')->notNul();
