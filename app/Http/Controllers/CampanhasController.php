@@ -76,10 +76,9 @@ class CampanhasController extends Controller
      */
     public function store(CampanhaCreateRequest $request)
     {
-        return dd($request);
         try {
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+           // $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             $campanha = $this->repository->create($request->all());
 

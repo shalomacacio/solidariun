@@ -22,7 +22,8 @@ class Campanha extends Model implements Transformable
      */
     protected $fillable = [
         'title',
-        'desctiption',
+        'description_short',
+        'description_full',
         'goal',
         'reached',
         'dt_final',
@@ -43,6 +44,6 @@ class Campanha extends Model implements Transformable
         return $result;
     }
 
-    
+
 
 }
