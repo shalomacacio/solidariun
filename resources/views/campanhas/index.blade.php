@@ -5,14 +5,14 @@
         <div class="container">
           <div class="row">
           </div>
-        </div> 
+        </div>
 </section> -->
 
 @include('partials.banner')
  <section class="probootstrap-section">
         <div class="container">
           <div class="row">
-          @foreach ($campanhas as $campanha) 
+          @foreach ($campanhas as $campanha)
             <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 probootstrap-animate" data-animate-effect="fadeIn">
               <div class="probootstrap-image-text-block probootstrap-cause">
                 <figure>
@@ -27,17 +27,17 @@
                     <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-raised">Arrecadado: <span>${{ $campanha->reached }}</span></div>
                     <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-goal">Meta: <span>${{ $campanha->goal }}</span></div>
                   </div>
-                  
+
                   <h2><a href="#">{{ $campanha->title }}</a></h2>
-                  <div class="probootstrap-date"><i class="icon-calendar"></i> 2 hours remaining</div>  
-                  
+                  <div class="probootstrap-date"><i class="icon-calendar"></i> 2 hours remaining</div>
+
                   <p><div>{{ $campanha->description }}</div></p>
                   <p>
-                      <a href="{{ route('campanhas.show', $campanha->id) }}" class="btn btn-primary ">Saber mais</a>
-                      1234
-                      <a href="#" class="btn btn-primary btn-black">Doar Agora!</a>
+                      <a href="{{ route('campanhas.show', $campanha->id) }}" class="btn btn-primary ">Ver</a>
+
+                      <a href="#" class="btn btn-primary btn-black">Solidarizar-se !</a>
                   </p>
-                  
+
                 </div>
               </div>
             </div>

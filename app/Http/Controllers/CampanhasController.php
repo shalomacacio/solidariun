@@ -78,7 +78,7 @@ class CampanhasController extends Controller
     {
         try {
 
-           // $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             $campanha = $this->repository->create($request->all());
 
