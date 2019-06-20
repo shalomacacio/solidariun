@@ -15,6 +15,7 @@ class SolidariunServiceProvider extends ServiceProvider
     {
         //$this->app->bind(MembroRepository::class, MembroRepositoryEloquent::class);
         $this->app->bind(\Solidariun\Repositories\CampanhaRepository::class, \Solidariun\Repositories\CampanhaRepositoryEloquent::class);
+        $this->app->bind(\Solidariun\Repositories\UserRepository::class, \Solidariun\Repositories\UserRepositoryEloquent::class);
         //:end-bindings:
     }
 

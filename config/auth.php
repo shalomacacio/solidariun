@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Solidariun\User::class,
+            'model' => Solidariun\Entities\User::class,
         ],
 
         // 'users' => [

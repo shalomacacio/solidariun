@@ -33,6 +33,12 @@ class Campanha extends Model implements Transformable
         'category_id',
         'user_id'
     ];
+
+    // public function setImgAttribute($value)
+	// {
+	// 	$this->attributes['img'] = $value;
+    // }
+
     public function getreduceDescriptionAttribute()
     {
        return substr($this->getAttribute('desctiption'), 0, 25);
@@ -43,7 +49,6 @@ class Campanha extends Model implements Transformable
         $result = (100/$this->goal ) * $this->reached;
         return $result;
     }
-
 
 
 }

@@ -4,42 +4,40 @@ namespace Solidariun\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Solidariun\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use Solidariun\Http\Requests\CampanhaCreateRequest;
-use Solidariun\Http\Requests\CampanhaUpdateRequest;
-use Solidariun\Repositories\CampanhaRepository;
-use Solidariun\Validators\CampanhaValidator;
+use Solidariun\Http\Requests\UserCreateRequest;
+use Solidariun\Http\Requests\UserUpdateRequest;
+use Solidariun\Repositories\UserRepository;
+use Solidariun\Validators\UserValidator;
 
 /**
- * Class CampanhasController.
+ * Class UsersController.
  *
  * @package namespace Solidariun\Http\Controllers;
  */
-class CampanhasController extends Controller
+class UsersController extends Controller
 {
     /**
-     * @var CampanhaRepository
+     * @var UserRepository
      */
     protected $repository;
 
     /**
-     * @var CampanhaValidator
+     * @var UserValidator
      */
     protected $validator;
 
     /**
-     * CampanhasController constructor.
+     * UsersController constructor.
      *
-     * @param CampanhaRepository $repository
-     * @param CampanhaValidator $validator
+     * @param UserRepository $repository
+     * @param UserValidator $validator
      */
-    public function __construct(CampanhaRepository $repository, CampanhaValidator $validator)
+    public function __construct(UserRepository $repository, UserValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
-        $this->middleware('auth')->except('index');
     }
 
     /**
@@ -50,48 +48,43 @@ class CampanhasController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $campanhas = $this->repository->all();
+        $users = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $campanhas,
+                'data' => $users,
             ]);
         }
 
-        return view('campanhas.index', compact('campanhas'));
+        return view('users.index', compact('users'));
     }
 
-    public function create(){
-        return view('campanhas.create');
+    public function create()
+    {
+        return view('users.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  CampanhaCreateRequest $request
+     * @param  UserCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(CampanhaCreateRequest $request)
+    public function store(UserCreateRequest $request)
     {
         try {
-
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+            //return dd($request->all());
+            $user = $this->repository->create($request->all());
 
-            $imageName = time().'.'.request()->img->getClientOriginalExtension();
-            request()->img->move(public_path('img/campanha'), $imageName);
-
-            $input = $request->all();
-            $input['img'] = $imageName;
-
-            $campanha = $this->repository->create($input);
 
             $response = [
-                'message' => 'Campanha created.',
-                'data'    => $campanha->toArray(),
+                'message' => 'User created.',
+                'data'    => $user->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -101,15 +94,15 @@ class CampanhasController extends Controller
 
             return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
+
             if ($request->wantsJson()) {
                 return response()->json([
                     'error'   => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
-
-            // return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-            return $e->getMessageBag()->withInput();
+            echo $e->getMessageBag();
+            //return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
     }
 
@@ -122,16 +115,16 @@ class CampanhasController extends Controller
      */
     public function show($id)
     {
-        $campanha = $this->repository->find($id);
+        $user = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $campanha,
+                'data' => $user,
             ]);
         }
 
-        return view('campanhas.show', compact('campanha'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -143,32 +136,37 @@ class CampanhasController extends Controller
      */
     public function edit($id)
     {
-        $campanha = $this->repository->find($id);
+        $user = $this->repository->find($id);
 
-        return view('campanhas.edit', compact('campanha'));
+        return view('users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  CampanhaUpdateRequest $request
+     * @param  UserUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(CampanhaUpdateRequest $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $campanha = $this->repository->update($request->all(), $id);
+            // $user = $this->repository->update($request->all(), $id);
+            $user = $this->repository->create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+            ]);
 
             $response = [
-                'message' => 'Campanha updated.',
-                'data'    => $campanha->toArray(),
+                'message' => 'User updated.',
+                'data'    => $user->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -206,11 +204,12 @@ class CampanhasController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Campanha deleted.',
+                'message' => 'User deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Campanha deleted.');
+        return redirect()->back()->with('message', 'User deleted.');
     }
+
 }

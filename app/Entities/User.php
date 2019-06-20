@@ -1,13 +1,25 @@
 <?php
 
-namespace Solidariun;
+namespace Solidariun\Entities;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
+use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User.
+ *
+ * @package namespace Solidariun\Entities;
+ */
 class User extends Authenticatable
 {
+    // use TransformableTrait;
+    use SoftDeletes;
     use Notifiable;
 
     /**
@@ -16,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','status', 'permision'
     ];
 
     /**
@@ -36,4 +48,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setPasswordAttribute($value)
+	{
+		$this->attributes['password'] = env('PASSWORD_HASH') ? Hash::make($value) : $value;
+    }
+
 }

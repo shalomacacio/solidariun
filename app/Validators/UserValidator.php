@@ -6,11 +6,11 @@ use \Prettus\Validator\Contracts\ValidatorInterface;
 use \Prettus\Validator\LaravelValidator;
 
 /**
- * Class CampanhaValidator.
+ * Class UserValidator.
  *
  * @package namespace Solidariun\Validators;
  */
-class CampanhaValidator extends LaravelValidator
+class UserValidator extends LaravelValidator
 {
     /**
      * Validation Rules
@@ -19,7 +19,9 @@ class CampanhaValidator extends LaravelValidator
      */
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
-            // 'img' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ],
         ValidatorInterface::RULE_UPDATE => [],
     ];

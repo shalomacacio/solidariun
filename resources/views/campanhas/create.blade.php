@@ -4,7 +4,7 @@
 <section class="probootstrap-section">
   <div class="container">
     <div class="row">
-      <form class="probootstrap-form" method="POST" action="{{ route('campanhas.store') }}" >
+      <form class="probootstrap-form" method="POST" action="{{ route('campanhas.store') }}" enctype="multipart/form-data" >
         @csrf
         <div class="col-md-5 probootstrap-animate">
 
@@ -48,7 +48,7 @@
 
           <div class="form-group">
                 <label for="img">Imagem:</label>
-                <input type="text" class="form-control" id="img" name="img">
+                <input type="file" class="form-control" id="img" name="img">
           </div>
 
             <div class="form-group">
@@ -61,7 +61,7 @@
           </div>
 
           {{-- <input id="user_id" name="user_id" type="hidden" value="{{Auth::user()->id}}"> --}}
-          <input id="user_id" name="user_id" type="hidden" value="1">
+          <input id="user_id" name="user_id" type="hidden" value="{{Auth::user()->id}}">
         </div>
       </form>
     </div>

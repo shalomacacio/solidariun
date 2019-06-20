@@ -13,7 +13,17 @@
           <div id="navbar-collapse" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="{{ route('site') }}">Home</a></li>
-              <li><a href="{{ route('campanhas.index') }}">Campanhas</a></li>             
+              <li><a href="{{ route('campanhas.index') }}">Campanhas</a></li>
+              @if(Auth::check())
+              <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle">{{ Auth::user()->name }}</a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Meus Dados</a></li>
+                  <li><a href="#">Minhas Campanhas</a></li>
+                  <li><a href="{{ route('logout') }}">Sair</a></li>
+                </ul>
+              </li>
+              @endif
               <li class="probootstra-cta-button last"><a href="{{ route('campanhas.create') }}" class="btn btn-primary">Criar Campanha</a></li>
             </ul>
           </div>

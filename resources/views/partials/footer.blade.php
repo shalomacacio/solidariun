@@ -15,7 +15,7 @@
                 </ul>
               </div>
             </div>
-           
+
             <div class="col-md-4 probootstrap-animate">
               <div class="probootstrap-footer-widget">
                 <h3>Informações</h3>
@@ -24,7 +24,7 @@
                   <li><i class="icon-mail"></i><span>info@domain.com</span></li>
                   <li><i class="icon-phone2"></i><span>+123 456 7890</span></li>
                 </ul>
-                
+
               </div>
             </div>
 
@@ -32,13 +32,13 @@
               <div class="probootstrap-footer-widget">
                 <h3>Doações</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit omnis nam obcaecati placeat. Repellendus omnis in praesentium molestiae rem eligendi.</p>
-                <p><a href="#" class="btn btn-primary">Login</a></p>
+                <p><a href="{{ route('login') }}" class="btn btn-primary">Login</a></p>
               </div>
             </div>
-           
+
           </div>
           <!-- END row -->
-          
+
         </div>
 
         <div class="probootstrap-copyright">

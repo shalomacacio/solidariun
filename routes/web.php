@@ -13,4 +13,9 @@
 
 Route::get('/', function () {return view('welcome');})->name('site');
 
+Route::get('/login', "AuthenticateController@login")->name('login');
+Route::get('/logout', "AuthenticateController@logout")->name('logout');
+Route::post('/auth', "AuthenticateController@auth")->name('auth');
+
 Route::resource('campanhas', 'CampanhasController');
+Route::resource('users', 'UsersController');
