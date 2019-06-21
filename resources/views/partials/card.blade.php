@@ -14,14 +14,12 @@
         <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-goal">Meta: <span>${{ $campanha->goal }}</span></div>
       </div>
 
-      <h2><a href="#">{{ isset($campanha->title)?$campanha->title: null }}</a></h2>
+      <h2><a href="{{ route('campanhas.show', $campanha->id) }}">{{ isset($campanha->title)?$campanha->title: null }}</a></h2>
       <div class="probootstrap-date"><i class="icon-calendar"></i>Faltam {{ isset($campanha->tempo)?$campanha->tempo: null }}</div>
 
-      <p><div>{{ isset($campanha->description)? $campanha->description : null }}</div></p>
+      <p><div>{{ isset($campanha->description_short)? $campanha->description_short : null }}</div></p>
       <p>
-          <a href="{{ route('campanhas.show', $campanha->id) }}" class="btn btn-primary ">Ver</a>
-
-          <a href="#" class="btn btn-primary btn-black">Solidarizar-se !</a>
+          <a href="#" class="btn btn-primary btn-primary">Solidarizar-se !</a>
       </p>
 
     </div>
