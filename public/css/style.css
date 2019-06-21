@@ -13,12 +13,6 @@
   font-style: normal;
 }
 
-.ch50 {
-  background-color: rgb(173,234,234);
-  font-weight: bolder;
-  max-width: 20ch;
-}
-
 html {
   overflow-x: hidden;
 }

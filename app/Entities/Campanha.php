@@ -5,6 +5,7 @@ namespace Solidariun\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use Carbon\Carbon;
 
 /**
  * Class Campanha.
@@ -31,24 +32,24 @@ class Campanha extends Model implements Transformable
         'movie',
         'flg_active',
         'category_id',
-        'user_id'
+        'user_id',
+        'created_at'
     ];
 
-    // public function setImgAttribute($value)
-	// {
-	// 	$this->attributes['img'] = $value;
-    // }
-
-    public function getreduceDescriptionAttribute()
+    public function getPercentAttribute()
     {
-       return substr($this->getAttribute('desctiption'), 0, 25);
+        return (100/$this->goal ) * $this->reached;
     }
 
-    public function percentual()
+    public function getTempoAttribute()
     {
-        $result = (100/$this->goal ) * $this->reached;
-        return $result;
+        $dataFinal = Carbon::createFromFormat('Y-m-d H:i:s', $this->dt_final );
+        $tempo = $dataFinal->diffInDays(Carbon::now());
+        if($tempo <= 0){
+            $tempo = $dataFinal->diffInHours(Carbon::now());
+            return "Faltam:".$tempo." horas";
+        }
+        return "Faltam:".$tempo." dias";
     }
-
 
 }

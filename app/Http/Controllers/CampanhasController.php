@@ -39,7 +39,7 @@ class CampanhasController extends Controller
     {
         $this->repository = $repository;
         $this->validator  = $validator;
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except(['index', 'recentes', 'show']);
     }
 
     /**
@@ -58,7 +58,6 @@ class CampanhasController extends Controller
                 'data' => $campanhas,
             ]);
         }
-
         return view('campanhas.index', compact('campanhas'));
     }
 

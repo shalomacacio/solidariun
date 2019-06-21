@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 
 <html lang="en">
-@include('partials.head') 
+@include('partials.head')
   <body>
     @include('partials.nav')
       @include('partials.banner')
-      @include('partials.populares')        
-      @include('partials.recentes')   
-      @include('partials.testemunhos') 
-    @include('partials.footer') 
-    @include('partials.scripts')    
+      @include('partials.recentes')
+      @include('partials.atuantes')
+      @include('partials.testemunhos')
+    @include('partials.footer')
+    @include('partials.scripts')
   </body>
 </html>

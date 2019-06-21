@@ -2,39 +2,13 @@
 
 @section('content')
 
-<section class="probootstrap-section">
-        <div class="container">
-          <div class="row">
-          </div>
-        </div> 
-</section>
+@include('partials.space')
 
   <section class="probootstrap-section">
         <div class="container">
           <div class="row probootstrap-gutter60">
 
-            <div class="col-md-4 col-sm-4 probootstrap-animate" data-animate-effect="fadeIn">
-              <div class="probootstrap-image-text-block probootstrap-cause">
-                <figure>
-                  <img src="../img/campanha/{{ $campanha->img}}" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
-                </figure>
-                <div class="probootstrap-cause-inner">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-s2" data-percent="{{ $campanha->percentual()}}"></div>
-                  </div>
-
-                  <div class="row mb30">
-                    <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-raised">Arrecadado: <span >${{ $campanha->reached}}</span></div>
-                    <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-goal">Meta: <span >${{ $campanha->goal}}</span></div>
-                  </div>
-                  
-                  <h2><a href="#">{{ $campanha->title}}</a></h2>
-                  <div class="probootstrap-date"><i class="icon-calendar"></i> 2 hours remaining</div>  
-                  
-                  <p><a href="#" class="btn btn-primary btn-black">Donate Now!</a></p>
-                </div>
-              </div>
-            </div>
+            @include('partials.card')
 
             <div class="col-md-8 col-sm-8 probootstrap-animate">
               <h2>{{ $campanha->title }}</h2>
