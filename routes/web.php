@@ -27,3 +27,6 @@ Route::get('/campanhas/recentes', 'CampanhasController@recentes');
 Route::resource('campanhas', 'CampanhasController');
 
 Route::resource('users', 'UsersController');
+
+Route::get('payments/{id}/solidarizar_se', 'PaymentsController@solidarizar_se')->name('payment');
+Route::resource('payments', 'PaymentsController');

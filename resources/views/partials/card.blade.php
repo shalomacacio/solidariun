@@ -2,7 +2,8 @@
 <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 probootstrap-animate" data-animate-effect="fadeIn">
   <div class="probootstrap-image-text-block probootstrap-cause">
     <figure>
-      <img src="../img/campanha/{{ $campanha->img}}" alt="img-campanha" class="img-responsive" width="600" height="303">
+      <img src="{{ url("storage/img/campanha/{$campanha->img}") }}" alt="img-campanha" class="img-responsive" width="600" height="303">
+      {{-- {{ url("categories/{$category->image}") }} --}}
     </figure>
     <div class="probootstrap-cause-inner">
       <div class="progress">
@@ -19,7 +20,8 @@
 
       <p><div>{{ isset($campanha->description_short)? $campanha->description_short : null }}</div></p>
       <p>
-          <a href="#" class="btn btn-primary btn-primary">Solidarizar-se !</a>
+          <a href="{{ route('payment', $campanha->id) }}" class="btn btn-primary btn-primary">Solidarizar-se !</a>
+
       </p>
 
     </div>

@@ -1,4 +1,4 @@
-<section class="probootstrap-hero" style="background-image: url(img/site/hero_bg_bw_1.jpg); background-position: 0px 300px;" data-stellar-background-ratio="0.5">
+<section class="probootstrap-hero" style="background-image: url(/storage/img/site/hero_bg_bw_1.jpg); background-position: 0px 300px;" data-stellar-background-ratio="0.5">
         <div class="container">
           <div class="row">
             <div class="col-md-12">

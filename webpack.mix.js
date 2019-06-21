@@ -39,15 +39,12 @@ mix.js('resources/js/app.js', 'public/js')
     ],'public/js/scripts.js');
 
 mix.copy([
-    'resources/css/custom.css', 
+    'resources/css/custom.css',
     'resources/css/style.css'], 'public/css/');
 
 mix.copy([
-    'resources/js/custom.js', 
+    'resources/js/custom.js',
     'resources/js/main.js'], 'public/js/');
-
-mix.copyDirectory('resources/img', 'public/img');
-mix.copyDirectory('resources/fonts', 'public/fonts');
 
 mix.sass('resources/sass/app.scss', 'public/css')
     .styles(['resources/sass/style.scss'

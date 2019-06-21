@@ -10,33 +10,33 @@
             <div class="col-md-3">
               <div class="probootstrap-donors text-center probootstrap-animate">
                 <figure class="media">
-                  <img src="../img/person/person_4.jpg" alt="person_4" class="img-responsive">
+                  <img src="{{ url("storage/img/person/person_5.jpg") }}" alt="person_5" class="img-responsive">
                 </figure>
                 <div class="text">
                   <h3>Linda Reyez</h3>
-                  <p class="donated">Donated <span class="money">$500.00</span></p>
+                  <p class="donated">Contribuiu <span class="money">$500.00</span></p>
                 </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="probootstrap-donors text-center probootstrap-animate">
                 <figure class="media">
-                    <img src="../img/person/person_5.jpg" alt="person_5" class="img-responsive">
+                    <img src="{{ url("storage/img/person/person_5.jpg") }}" alt="person_5" class="img-responsive">
                 </figure>
                 <div class="text">
                   <h3>Chris Worth</h3>
-                  <p class="donated">Donated <span class="money">$1,500.00</span></p>
+                  <p class="donated">Contribuiu <span class="money">$1,500.00</span></p>
                 </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="probootstrap-donors text-center probootstrap-animate">
                 <figure class="media">
-                    <img src="../img/person/person_4.jpg" alt="person_4" class="img-responsive">
+                    <img src="{{ url("storage/img/person/person_5.jpg") }}"alt="person_5" class="img-responsive">
                 </figure>
                 <div class="text">
                   <h3>Janet Morris</h3>
-                  <p class="donated">Donated <span class="money">$250.00</span></p>
+                  <p class="donated">Contribuiu <span class="money">$250.00</span></p>
                 </div>
               </div>
             </div>
@@ -44,11 +44,11 @@
 
               <div class="probootstrap-donors text-center probootstrap-animate">
                 <figure class="media">
-                    <img src="../img/person/person_4.jpg" alt="person_4" class="img-responsive">
+                    <img src="{{ url("storage/img/person/person_5.jpg") }}" alt="person_5" class="img-responsive">
                 </figure>
                 <div class="text">
                   <h3>Jessa Sy</h3>
-                  <p class="donated">Donated <span class="money">$400.00</span></p>
+                  <p class="donated">Contribuiu <span class="money">$400.00</span></p>
                 </div>
               </div>
 

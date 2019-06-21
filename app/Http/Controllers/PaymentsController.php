@@ -7,39 +7,42 @@ use Illuminate\Http\Request;
 use Solidariun\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use Solidariun\Http\Requests\CampanhaCreateRequest;
-use Solidariun\Http\Requests\CampanhaUpdateRequest;
+use Solidariun\Http\Requests\PaymentCreateRequest;
+use Solidariun\Http\Requests\PaymentUpdateRequest;
+use Solidariun\Repositories\PaymentRepository;
 use Solidariun\Repositories\CampanhaRepository;
-use Solidariun\Validators\CampanhaValidator;
+use Solidariun\Validators\PaymentValidator;
 
 /**
- * Class CampanhasController.
+ * Class PaymentsController.
  *
  * @package namespace Solidariun\Http\Controllers;
  */
-class CampanhasController extends Controller
+class PaymentsController extends Controller
 {
     /**
-     * @var CampanhaRepository
+     * @var PaymentRepository
      */
     protected $repository;
 
     /**
-     * @var CampanhaValidator
+     * @var PaymentValidator
      */
     protected $validator;
 
+    protected $camp_repository;
+
     /**
-     * CampanhasController constructor.
+     * PaymentsController constructor.
      *
-     * @param CampanhaRepository $repository
-     * @param CampanhaValidator $validator
+     * @param PaymentRepository $repository
+     * @param PaymentValidator $validator
      */
-    public function __construct(CampanhaRepository $repository, CampanhaValidator $validator)
+    public function __construct(PaymentRepository $repository, PaymentValidator $validator, CampanhaRepository $camp_repository)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
-        $this->middleware('auth')->except(['index', 'recentes', 'show']);
+        $this->camp_repository = $camp_repository;
     }
 
     /**
@@ -50,48 +53,38 @@ class CampanhasController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $campanhas = $this->repository->all();
+        $payments = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $campanhas,
+                'data' => $payments,
             ]);
         }
-        return view('campanhas.index', compact('campanhas'));
-    }
 
-    public function create(){
-        return view('campanhas.create');
+        return view('payments.index', compact('payments'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  CampanhaCreateRequest $request
+     * @param  PaymentCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(CampanhaCreateRequest $request)
+    public function store(PaymentCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $imageName = time().'.'.request()->img->getClientOriginalExtension();
-            //request()->img->storeAs('img/campanha', $imageName);
-            $upload = $request->img->storeAs('img/campanha', $imageName);
-
-            $input = $request->all();
-            $input['img'] = $imageName;
-
-            $campanha = $this->repository->create($input);
+            $payment = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Campanha created.',
-                'data'    => $campanha->toArray(),
+                'message' => 'Payment created.',
+                'data'    => $payment->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -108,9 +101,13 @@ class CampanhasController extends Controller
                 ]);
             }
 
-            // return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-            return $e->getMessageBag()->withInput();
+            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
+    }
+
+    public function solidarizar_se($id){
+        $campanha = $this->camp_repository->find($id);
+        return view('payments.payment', compact('campanha'));
     }
 
     /**
@@ -122,16 +119,16 @@ class CampanhasController extends Controller
      */
     public function show($id)
     {
-        $campanha = $this->repository->find($id);
+        $payment = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $campanha,
+                'data' => $payment,
             ]);
         }
 
-        return view('campanhas.show', compact('campanha'));
+        return view('payments.show', compact('payment'));
     }
 
     /**
@@ -143,32 +140,32 @@ class CampanhasController extends Controller
      */
     public function edit($id)
     {
-        $campanha = $this->repository->find($id);
+        $payment = $this->repository->find($id);
 
-        return view('campanhas.edit', compact('campanha'));
+        return view('payments.edit', compact('payment'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  CampanhaUpdateRequest $request
+     * @param  PaymentUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(CampanhaUpdateRequest $request, $id)
+    public function update(PaymentUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $campanha = $this->repository->update($request->all(), $id);
+            $payment = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Campanha updated.',
-                'data'    => $campanha->toArray(),
+                'message' => 'Payment updated.',
+                'data'    => $payment->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -206,11 +203,11 @@ class CampanhasController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Campanha deleted.',
+                'message' => 'Payment deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Campanha deleted.');
+        return redirect()->back()->with('message', 'Payment deleted.');
     }
 }
