@@ -30,7 +30,7 @@
                         <div class="col-md-4 probootstrap-animate">
                             <div class="form-group">
                                 <label for="creditCardHolderBirthDate">Data de Nascimento:</label>
-                                <input type="date" class="form-control" id="senderName" name="senderName">
+                                <input type="date" class="form-control" id="creditCardHolderBirthDate" name="creditCardHolderBirthDate">
                             </div>
                         </div>
 
@@ -47,6 +47,20 @@
                                 <input type="text" class="form-control" id="senderCPF" name="senderCPF">
                             </div>
                         </div>
+                        <div class="col-md-6 probootstrap-animate">
+                            <div class="form-group">
+                                <label for="photo">Foto:</label>
+                                <input type="file" class="form-control" id="photo" name="photo">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 probootstrap-animate">
+                            <div class="form-group">
+                                <label for="itemAmount">Valor:</label>
+                                <input type="text" class="form-control" id="itemAmount" name="itemAmount">
+                            </div>
+                        </div>
+
 
                         <div class="col-md-4 probootstrap-animate">
                             <div class="form-group">
@@ -60,15 +74,13 @@
                                     <input id="credito" name="paymentMethod" type="radio" value="creditCard" class="custom-control-input"  required>
                                     <label class="custom-control-label"  for="credito">Cartão de crédito</label>
                                 </div>
-
                             </div>
-
                         </div>
 
                         <div class="col-md-8 probootstrap-animate">
                             <div class="form-group">
-                                <label for="cardNumber">Titular do Cartão:</label>
-                                <input type="text" class="form-control" id="cardNumber" name="cardNumber">
+                                <label for="senderName">Titular do Cartão:</label>
+                                <input type="text" class="form-control" id="senderName" name="senderName">
                             </div>
                             <div class="form-group">
                                 <label for="cardNumber">Numero do Cartão:</label>
@@ -78,24 +90,24 @@
                             <div class="col-md-4 probootstrap-animate">
                                 <div class="form-group"">
                                     <div class="card-operator ">
-                                        <input id="visa" name="visa" type="radio" value="visa" class="custom-control-input"  required>
-                                        <label class="custom-control-label"  for="visa"><img alt="Visa" src="{{ url('storage/img/brand/visa.png') }}"></label>
+                                        <input id="brand" name="brand" type="radio" value="visa" class="custom-control-input"  required>
+                                        <label class="custom-control-label"  for="brand"><img alt="Visa" src="{{ url('storage/img/brand/visa.png') }}"></label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4 probootstrap-animate">
                                 <div class="form-group"">
                                     <div class="card-operator">
-                                        <input id="master" name="master" type="radio" value="master" class="custom-control-input"  required>
-                                        <label class="custom-control-label"  for="master"><img alt="Maste" src="{{ url('storage/img/brand/master.png') }}"></label>
+                                        <input id="brand" name="brand" type="radio" value="master" class="custom-control-input"  required>
+                                        <label class="custom-control-label"  for="brand"><img alt="Maste" src="{{ url('storage/img/brand/master.png') }}"></label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4 probootstrap-animate">
                                 <div class="form-group"">
                                     <div class="card-operator">
-                                        <input id="elo" name="elo" type="radio" value="elo" class="custom-control-input"  required>
-                                        <label class="custom-control-label"  for="credeloito"><img alt="Elo" src="{{ url('storage/img/brand/elo.png') }}"></label>
+                                        <input id="brand" name="brand" type="radio" value="elo" class="custom-control-input"  required>
+                                        <label class="custom-control-label"  for="brand"><img alt="Elo" src="{{ url('storage/img/brand/elo.png') }}"></label>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +137,7 @@
                         </div>
 
                         {{-- <input id="user_id" name="user_id" type="hidden" value="{{Auth::user()->id}}"> --}}
-                        <input type="hidden" class="form-control" id="creditCardToken" name="creditCardToken">
+                        <input type="text" class="form-control" id="creditCardToken" name="creditCardToken">
                         <input type="hidden" class="form-control" id="senderHash" name="senderHash">
                         <div class="col-md-12 probootstrap-animate">
                             <div class="form-group">
@@ -149,31 +161,31 @@
               var hash = PagSeguroDirectPayment.getSenderHash();
                $('#senderHash').val(hash);
               PagSeguroDirectPayment.setSessionId('{{ PagSeguro::startSession() }}');
-              console.log(hash);
+              //console.log(hash);
           }
 
           function cardToken(){
-              PagSeguroDirectPayment.createCardToken({
-                  cardNumber: '4111111111111111', // Número do cartão de crédito
-                  brand: 'visa', // Bandeira do cartão
-                  cvv: '123', // CVV do cartão
-                  expirationMonth: '12', // Mês da expiração do cartão
-                  expirationYear: '2030', // Ano da expiração do cartão, é necessário os 4 dígitos.
-                  success: function(response) {
-                      //console.log(response)
-                      $('#creditCardToken').val(response['card']['token']);
-                          // Retorna o cartão tokenizado.
-                  },
-                  error: function(response) {
-                              // Callback para chamadas que falharam.
-                              //console.log(response)
-                  },
-                  complete: function(response) {
-                          // Callback para todas chamadas.
-                         // console.log(response)
-                  }
-              });
-          }
+            PagSeguroDirectPayment.createCardToken({
+                cardNumber: $("#cardNumber").val(), // Número do cartão de crédito
+                brand: $("#brand").val(), // Bandeira do cartão
+                cvv: $("#cvv").val(), // CVV do cartão
+                expirationMonth: $("#expirationMonth").val(), // Mês da expiração do cartão
+                expirationYear: $("#expirationYear").val(), // Ano da expiração do cartão, é necessário os 4 dígitos.
+                success: function(response) {
+                    console.log(response['brand'])
+                    $('#creditCardToken').val(response['card']['token']);
+                        // Retorna o cartão tokenizado.
+                },
+                error: function(response) {
+                            // Callback para chamadas que falharam.
+                            console.log(response)
+                },
+                complete: function(response) {
+                        // Callback para todas chamadas.
+                        console.log(response)
+                }
+            });
+        }
       </script>
 @endsection
 
