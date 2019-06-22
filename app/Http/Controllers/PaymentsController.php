@@ -77,6 +77,7 @@ class PaymentsController extends Controller
     public function store(PaymentCreateRequest $request)
     {
         try {
+            //$reponse->header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
@@ -106,6 +107,7 @@ class PaymentsController extends Controller
     }
 
     public function solidarizar_se($id){
+
         $campanha = $this->camp_repository->find($id);
         return view('payments.payment', compact('campanha'));
     }
@@ -248,6 +250,7 @@ class PaymentsController extends Controller
           'installmentQuantity' => '1',
           'installmentValue' => $request->itemAmount, //apenas se for parcelado
         ]);
+
 
          //$pagseguro->paymentLink;
     }
