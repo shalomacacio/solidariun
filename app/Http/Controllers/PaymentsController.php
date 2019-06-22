@@ -210,4 +210,45 @@ class PaymentsController extends Controller
 
         return redirect()->back()->with('message', 'Payment deleted.');
     }
+
+
+    public function pay(Request $request){
+        //return dd($request);
+        //https://sandbox.pagseguro.uol.com.br/checkout/payment/booklet/print.jhtml?c=74cc63f7ca49daed817936e0646a51b18f0343aa675d3259c8862725d771ea12735280586aacca31
+        $pagseguro = PagSeguro::setReference('ID do pedido')
+        ->setSenderInfo([
+          'senderName' => $request->senderName, //Deve conter nome e sobrenome
+          'senderPhone' => '(85) 98704-7679', //Código de área enviado junto com o telefone
+          'senderEmail' => $request->senderEmail,
+          'senderHash' => $request->senderHash,
+          'senderCPF' => $request->senderCPF, //Ou CNPJ se for Pessoa Júridica
+        ])
+        ->setCreditCardHolder([
+          'creditCardHolderBirthDate' => '10/02/2000',
+        ])
+        ->setShippingAddress([
+          'shippingAddressStreet' => 'Rua/Avenida',
+          'shippingAddressNumber' => 'Número',
+          'shippingAddressDistrict' => 'Bairro',
+          'shippingAddressPostalCode' => '12345-678',
+          'shippingAddressCity' => 'Maranguape',
+          'shippingAddressState' => 'CE'
+        ])
+        ->setItems([
+          [
+            'itemId' => 'ID',
+            'itemDescription' => 'Nome do Item',
+            'itemAmount' => $request->itemAmount, //Valor unitário
+            'itemQuantity' => '1', // Quantidade de itens
+          ]
+        ])
+        ->send([
+          'paymentMethod' => $request->paymentMethod,
+          'creditCardToken' => $request->creditCardToken,
+          'installmentQuantity' => '1',
+          'installmentValue' => $request->itemAmount, //apenas se for parcelado
+        ]);
+
+         //$pagseguro->paymentLink;
+    }
 }

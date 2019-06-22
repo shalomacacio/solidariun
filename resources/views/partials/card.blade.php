@@ -3,7 +3,6 @@
   <div class="probootstrap-image-text-block probootstrap-cause">
     <figure>
       <img src="{{ url("storage/img/campanha/{$campanha->img}") }}" alt="img-campanha" class="img-responsive" width="600" height="303">
-      {{-- {{ url("categories/{$category->image}") }} --}}
     </figure>
     <div class="probootstrap-cause-inner">
       <div class="progress">

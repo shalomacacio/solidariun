@@ -7,8 +7,8 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('site') }}" title="uiCookies:Enlight">Solidariun</a>
-          </div>
+            <a class="navbar-brand" href="{{ route('site') }}" title="logo">Solidariun</a>
+        </div>
 
           <div id="navbar-collapse" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
