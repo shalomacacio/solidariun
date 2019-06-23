@@ -11,8 +11,23 @@
 
             <div class="col-md-8 col-sm-8 probootstrap-animate">
               <div class="row">
-                    <form class="probootstrap-form" method="POST" action="{{ route('payments.store') }}" >
+                    <form class="probootstrap-form" method="POST" action="{{ route('payments.store') }}" enctype="multipart/form-data" >
                     @csrf
+
+                        <div class="col-md-6 probootstrap-animate">
+                            <div class="form-group">
+                                <label for="itemAmount">Valor:</label>
+                                <input type="text" class="form-control" id="itemAmount" name="itemAmount">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 probootstrap-animate">
+                            <div class="form-group">
+                                <label for="photo">Foto:</label>
+                                <input type="file" class="form-control" id="photo" name="photo">
+                            </div>
+                        </div>
+
                         <div class="col-md-6  probootstrap-animate">
                             <div class="form-group">
                                 <label for="name">Nome:</label>
@@ -47,20 +62,6 @@
                                 <input type="text" class="form-control" id="senderCPF" name="senderCPF">
                             </div>
                         </div>
-                        <div class="col-md-6 probootstrap-animate">
-                            <div class="form-group">
-                                <label for="photo">Foto:</label>
-                                <input type="file" class="form-control" id="photo" name="photo">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 probootstrap-animate">
-                            <div class="form-group">
-                                <label for="itemAmount">Valor:</label>
-                                <input type="text" class="form-control" id="itemAmount" name="itemAmount">
-                            </div>
-                        </div>
-
 
                         <div class="col-md-4 probootstrap-animate">
                             <div class="form-group">
@@ -137,6 +138,7 @@
                         </div>
 
                         {{-- <input id="user_id" name="user_id" type="hidden" value="{{Auth::user()->id}}"> --}}
+                        <input type="hidden" class="form-control" id="campanha_id" name="campanha_id" value="{{$campanha->id}}">
                         <input type="text" class="form-control" id="creditCardToken" name="creditCardToken">
                         <input type="hidden" class="form-control" id="senderHash" name="senderHash">
                         <div class="col-md-12 probootstrap-animate">
@@ -172,7 +174,7 @@
                 expirationMonth: $("#expirationMonth").val(), // Mês da expiração do cartão
                 expirationYear: $("#expirationYear").val(), // Ano da expiração do cartão, é necessário os 4 dígitos.
                 success: function(response) {
-                    console.log(response['brand'])
+                    // console.log(response['brand'])
                     $('#creditCardToken').val(response['card']['token']);
                         // Retorna o cartão tokenizado.
                 },

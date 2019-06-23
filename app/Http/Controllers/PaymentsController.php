@@ -12,7 +12,7 @@ use Solidariun\Http\Requests\PaymentUpdateRequest;
 use Solidariun\Repositories\PaymentRepository;
 use Solidariun\Repositories\CampanhaRepository;
 use Solidariun\Validators\PaymentValidator;
-
+use PagSeguro;
 /**
  * Class PaymentsController.
  *
@@ -77,9 +77,16 @@ class PaymentsController extends Controller
     public function store(PaymentCreateRequest $request)
     {
         try {
-            //$reponse->header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
+
+
+          // $requestCard =  $this->pay($request);
+
+           //return dd($request);
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+
+            $imageName = time().'.'.request()->photo->getClientOriginalExtension();
+            $upload = $request->img->storeAs('photo/campanha', $imageName);
 
             $payment = $this->repository->create($request->all());
 
@@ -214,10 +221,11 @@ class PaymentsController extends Controller
     }
 
 
-    public function pay(Request $request){
+    public function pay($request){
+
         //return dd($request);
         //https://sandbox.pagseguro.uol.com.br/checkout/payment/booklet/print.jhtml?c=74cc63f7ca49daed817936e0646a51b18f0343aa675d3259c8862725d771ea12735280586aacca31
-        $pagseguro = PagSeguro::setReference('ID do pedido')
+        $pagseguro = PagSeguro::setReference($request->campanha_id)
         ->setSenderInfo([
           'senderName' => $request->senderName, //Deve conter nome e sobrenome
           'senderPhone' => '(85) 98704-7679', //Código de área enviado junto com o telefone
@@ -251,7 +259,7 @@ class PaymentsController extends Controller
           'installmentValue' => $request->itemAmount, //apenas se for parcelado
         ]);
 
-
+        return $pagseguro;
          //$pagseguro->paymentLink;
     }
 }

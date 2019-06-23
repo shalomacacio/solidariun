@@ -21,6 +21,7 @@ class Payment extends Model implements Transformable
      * @var array
      */
     protected $fillable = [
+        'photo',
 		'senderName',
         'senderPhone',
         'senderEmail',
