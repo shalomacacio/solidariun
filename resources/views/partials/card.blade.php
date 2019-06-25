@@ -10,8 +10,8 @@
       </div>
 
       <div class="row mb30">
-        <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-raised">Arrecadado: <span>${{ $campanha->reached }}</span></div>
-        <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-goal">Meta: <span>${{ $campanha->goal }}</span></div>
+        <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-raised " >Arrecadado: <span>R$ {{ $campanha->reached }}</span></div>
+        <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-goal">Meta: <span>R$ {{ $campanha->goal }}</span></div>
       </div>
 
       <h2><a href="{{ route('campanhas.show', $campanha->id) }}">{{ isset($campanha->title)?$campanha->title: null }}</a></h2>

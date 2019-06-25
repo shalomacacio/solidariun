@@ -5,6 +5,7 @@ namespace Solidariun\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 /**
@@ -23,8 +24,7 @@ class Campanha extends Model implements Transformable
      */
     protected $fillable = [
         'title',
-        'description_short',
-        'description_full',
+        'description',
         'goal',
         'reached',
         'dt_final',
@@ -35,6 +35,11 @@ class Campanha extends Model implements Transformable
         'user_id',
         'created_at'
     ];
+
+    public function getDescriptionShortAttribute()
+    {
+        return Str::limit($this->description, 120);
+    }
 
     public function getPercentAttribute()
     {

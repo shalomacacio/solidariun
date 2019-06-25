@@ -9,29 +9,23 @@
 
             @include('partials.card')
 
-            <div class="col-md-8 col-sm-8 probootstrap-animate">
-              <div class="row">
+            <div class="jumbotron col-md-8 col-sm-8 probootstrap-animate">
+              <div class="row ">
                     <form class="probootstrap-form" method="POST" action="{{ route('payments.store') }}" enctype="multipart/form-data" >
                     @csrf
+
+
+                        <div class="col-md-12  probootstrap-animate">
+                            <div class="form-group">
+                                <label for="name">Nome:</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                        </div>
 
                         <div class="col-md-6 probootstrap-animate">
                             <div class="form-group">
                                 <label for="itemAmount">Valor:</label>
-                                <input type="text" class="form-control" id="itemAmount" name="itemAmount">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 probootstrap-animate">
-                            <div class="form-group">
-                                <label for="photo">Foto:</label>
-                                <input type="file" class="form-control" id="photo" name="photo">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6  probootstrap-animate">
-                            <div class="form-group">
-                                <label for="name">Nome:</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" data-mask="#.##0,00" id="itemAmount" name="itemAmount">
                             </div>
                         </div>
 
@@ -52,14 +46,14 @@
                         <div class="col-md-4 probootstrap-animate">
                             <div class="form-group">
                                 <label for="senderPhone">Celular:</label>
-                                <input type="text" class="form-control" id="senderPhone" name="senderPhone">
+                                <input type="text" class="form-control" data-mask="(00) 00000-0000" id="senderPhone" name="senderPhone">
                             </div>
                         </div>
 
                         <div class="col-md-4 probootstrap-animate">
                             <div class="form-group">
                                 <label for="senderCPF">CPF:</label>
-                                <input type="text" class="form-control" id="senderCPF" name="senderCPF">
+                                <input type="text" class="form-control" data-mask="000.000.000-00" id="senderCPF" name="senderCPF">
                             </div>
                         </div>
 
@@ -76,6 +70,10 @@
                                     <label class="custom-control-label"  for="credito">Cartão de crédito</label>
                                 </div>
                             </div>
+
+                        <div class="">
+                                <img src="{{ url("storage/img/site/logo_pagseguro.jpg") }}" alt="img-campanha" class="img-responsive" width="200" height="200">
+                            </div>
                         </div>
 
                         <div class="col-md-8 probootstrap-animate">
@@ -85,7 +83,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="cardNumber">Numero do Cartão:</label>
-                                <input type="text" class="form-control" id="cardNumber" name="cardNumber">
+                                <input type="text" class="form-control" data-mask="0000 000000 00000" id="cardNumber" name="cardNumber">
                             </div>
 
                             <div class="col-md-4 probootstrap-animate">
@@ -114,30 +112,27 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4"></div>
-
                         <div class="col-md-3 probootstrap-animate">
                             <div class="form-group">
                                 <label for="expirationMonth">Mês:</label>
-                                <input type="text" class="form-control" id="expirationMonth" name="expirationMonth">
+                                <input type="text" class="form-control" data-mask="00" id="expirationMonth" name="expirationMonth">
                             </div>
                         </div>
 
                         <div class="col-md-3 probootstrap-animate">
                             <div class="form-group">
                                 <label for="expirationYear">Ano:</label>
-                                <input type="text" class="form-control" id="expirationYear" name="expirationYear">
+                                <input type="text" class="form-control" data-mask="0000"  id="expirationYear" name="expirationYear">
                             </div>
                         </div>
 
                         <div class="col-md-2 probootstrap-animate">
                             <div class="form-group">
                                 <label for="cvv">CVV:</label>
-                                <input type="text" class="form-control" id="cvv" name="cvv">
+                                <input type="text" class="form-control" data-mask="0000" id="cvv" name="cvv">
                             </div>
                         </div>
 
-                        {{-- <input id="user_id" name="user_id" type="hidden" value="{{Auth::user()->id}}"> --}}
                         <input type="hidden" class="form-control" id="campanha_id" name="campanha_id" value="{{$campanha->id}}">
                         <input type="text" class="form-control" id="creditCardToken" name="creditCardToken">
                         <input type="hidden" class="form-control" id="senderHash" name="senderHash">
@@ -155,7 +150,9 @@
       </section>
 
       @push('scripts')
-      <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
       <script type="text/javascript" src="/pagseguro/javascript"></script>
 
       <script>
