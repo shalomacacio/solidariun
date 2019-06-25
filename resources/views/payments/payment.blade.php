@@ -25,7 +25,7 @@
                         <div class="col-md-6 probootstrap-animate">
                             <div class="form-group">
                                 <label for="itemAmount">Valor:</label>
-                                <input type="text" class="form-control" data-mask="#.##0,00" id="itemAmount" name="itemAmount">
+                                <input type="text" class="form-control"  id="itemAmount" name="itemAmount">
                             </div>
                         </div>
 
@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <label for="senderCPF">Forma de Doação:</label>
                                 <div class="custom-control custom-radio">
-                                    <input id="boleto" name="paymentMethod" type="radio" value="boleto" class="custom-control-input" required>
+                                    <input id="boleto" name="paymentMethod" type="radio" value="boleto" class="custom-control-input" checked required>
                                     <label class="custom-control-label"  for="boleto">Boleto</label>
                                 </div>
 
@@ -72,71 +72,72 @@
                             </div>
 
                         <div class="">
-                                <img src="{{ url("storage/img/site/logo_pagseguro.jpg") }}" alt="img-campanha" class="img-responsive" width="200" height="200">
+                                <img src="{{ url("storage/img/site/logo_pagseguro.png") }}" alt="img-campanha" class="img-responsive" width="200" height="200">
                             </div>
                         </div>
+                        <div id="card" hidden>
+                            <div class="col-md-8 probootstrap-animate">
+                                <div class="form-group">
+                                    <label for="senderName">Titular do Cartão:</label>
+                                    <input type="text" class="form-control" id="senderName" name="senderName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardNumber">Numero do Cartão:</label>
+                                    <input type="text" class="form-control" data-mask="0000 000000 00000" id="cardNumber" name="cardNumber">
+                                </div>
 
-                        <div class="col-md-8 probootstrap-animate">
-                            <div class="form-group">
-                                <label for="senderName">Titular do Cartão:</label>
-                                <input type="text" class="form-control" id="senderName" name="senderName">
-                            </div>
-                            <div class="form-group">
-                                <label for="cardNumber">Numero do Cartão:</label>
-                                <input type="text" class="form-control" data-mask="0000 000000 00000" id="cardNumber" name="cardNumber">
-                            </div>
-
-                            <div class="col-md-4 probootstrap-animate">
-                                <div class="form-group"">
-                                    <div class="card-operator ">
-                                        <input id="brand" name="brand" type="radio" value="visa" class="custom-control-input"  required>
-                                        <label class="custom-control-label"  for="brand"><img alt="Visa" src="{{ url('storage/img/brand/visa.png') }}"></label>
+                                <div class="col-md-4 probootstrap-animate">
+                                    <div class="form-group"">
+                                        <div class="card-operator ">
+                                            <input id="brand" name="brand" type="radio" value="visa" class="custom-control-input"  required>
+                                            <label class="custom-control-label"  for="brand"><img alt="Visa" src="{{ url('storage/img/brand/visa.png') }}"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 probootstrap-animate">
+                                    <div class="form-group"">
+                                        <div class="card-operator">
+                                            <input id="brand" name="brand" type="radio" value="master" class="custom-control-input"  required>
+                                            <label class="custom-control-label"  for="brand"><img alt="Maste" src="{{ url('storage/img/brand/master.png') }}"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 probootstrap-animate">
+                                    <div class="form-group"">
+                                        <div class="card-operator">
+                                            <input id="brand" name="brand" type="radio" value="elo" class="custom-control-input"  required>
+                                            <label class="custom-control-label"  for="brand"><img alt="Elo" src="{{ url('storage/img/brand/elo.png') }}"></label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 probootstrap-animate">
-                                <div class="form-group"">
-                                    <div class="card-operator">
-                                        <input id="brand" name="brand" type="radio" value="master" class="custom-control-input"  required>
-                                        <label class="custom-control-label"  for="brand"><img alt="Maste" src="{{ url('storage/img/brand/master.png') }}"></label>
-                                    </div>
+
+                            <div class="col-md-4"></div>
+                            <div class="col-md-3 probootstrap-animate">
+                                <div class="form-group">
+                                    <label for="expirationMonth">Mês:</label>
+                                    <input type="text" class="form-control" data-mask="00" id="expirationMonth" name="expirationMonth">
                                 </div>
                             </div>
-                            <div class="col-md-4 probootstrap-animate">
-                                <div class="form-group"">
-                                    <div class="card-operator">
-                                        <input id="brand" name="brand" type="radio" value="elo" class="custom-control-input"  required>
-                                        <label class="custom-control-label"  for="brand"><img alt="Elo" src="{{ url('storage/img/brand/elo.png') }}"></label>
-                                    </div>
+
+                            <div class="col-md-3 probootstrap-animate">
+                                <div class="form-group">
+                                    <label for="expirationYear">Ano:</label>
+                                    <input type="text" class="form-control" data-mask="0000"  id="expirationYear" name="expirationYear">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 probootstrap-animate">
+                                <div class="form-group">
+                                    <label for="cvv">CVV:</label>
+                                    <input type="text" class="form-control" data-mask="0000" id="cvv" name="cvv">
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-3 probootstrap-animate">
-                            <div class="form-group">
-                                <label for="expirationMonth">Mês:</label>
-                                <input type="text" class="form-control" data-mask="00" id="expirationMonth" name="expirationMonth">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 probootstrap-animate">
-                            <div class="form-group">
-                                <label for="expirationYear">Ano:</label>
-                                <input type="text" class="form-control" data-mask="0000"  id="expirationYear" name="expirationYear">
-                            </div>
-                        </div>
-
-                        <div class="col-md-2 probootstrap-animate">
-                            <div class="form-group">
-                                <label for="cvv">CVV:</label>
-                                <input type="text" class="form-control" data-mask="0000" id="cvv" name="cvv">
-                            </div>
-                        </div>
-
                         <input type="hidden" class="form-control" id="campanha_id" name="campanha_id" value="{{$campanha->id}}">
                         <input type="text" class="form-control" id="creditCardToken" name="creditCardToken">
                         <input type="hidden" class="form-control" id="senderHash" name="senderHash">
-                        <div class="col-md-12 probootstrap-animate">
+                        <div class="col-md-4 offset-md-8 ">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary"> Contribuir </button>
                                 <button type="button" onclick="cardToken()" class="btn btn-primary">pgar codigo </button>
@@ -154,6 +155,10 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
       <script type="text/javascript" src="/pagseguro/javascript"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
 
       <script>
           window.onload =  function() {
@@ -185,6 +190,17 @@
                 }
             });
         }
+
+
+        $('input[name="paymentMethod"]').change(function () {
+
+            if ($('input[name="paymentMethod"]:checked').val() === "creditCard") {
+                $('#card').show();
+            } else {
+                $('#card').hide();
+            }
+        });
+
       </script>
 @endsection
 

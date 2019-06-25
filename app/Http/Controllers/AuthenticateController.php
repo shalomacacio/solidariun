@@ -47,7 +47,7 @@ class AuthenticateController extends Controller
     public function logout()
     {
         Auth::logout();
-        return view ('auth.login');
+        return redirect()->route('site');
     }
 
     public function auth(Request $request)

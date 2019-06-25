@@ -5,7 +5,7 @@
   <body>
     @include('partials.nav')
       @include('partials.banner')
-      @include('partials.recentes')
+      @include('partials.maispopulares')
       {{-- @include('partials.atuantes') --}}
       @include('partials.testemunhos')
     @include('partials.footer')

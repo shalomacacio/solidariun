@@ -8,9 +8,7 @@
         <div class="container">
           <div class="row probootstrap-gutter60">
 
-            @include('partials.card')
-
-            <div class="col-md-8 col-sm-8 probootstrap-animate">
+            <div class="background_white  col-md-8 col-sm-8 probootstrap-animate">
               <h2>{{ $campanha->title }}</h2>
               <p>{{ $campanha->description }}</p> <!--  {{ $campanha->description_short }}  -->
               <div class="row">
@@ -32,10 +30,10 @@
               </div>
               <p>Odio soluta illo repudiandae aut aperiam dolor ipsam laboriosam, vero sit possimus minus quis, ducimus dolorum veritatis nulla facilis earum ex ab repellat quibusdam assumenda! Iusto saepe repellat doloribus in quisquam asperiores ea minus, ipsam aliquam at quam, deserunt velit eum pariatur animi suscipit quos necessitatibus molestias eaque. Voluptatibus natus accusantium at, minus quasi non, nesciunt ea illo atque necessitatibus?</p>
               <p>In pariatur mollitia, perspiciatis eum sequi minima vitae laborum aut praesentium obcaecati veritatis cum amet voluptas voluptates dolorem numquam, ex quibusdam neque esse. Ex asperiores delectus molestias illum nihil suscipit eaque placeat saepe dignissimos fuga dolore, consequuntur nisi totam id illo necessitatibus! Ducimus libero dolores soluta consequuntur maiores sapiente modi excepturi aliquid voluptate, corrupti, porro, possimus quas quod consequatur repellat.</p>
-              <p><a href="{{ route('campanhas.create') }}" class="btn btn-black btn-lg">Doar agora</a></p>
+              <p><a href="{{ route('campanhas.pay') }}" class="btn btn-black btn-lg">Doar agora</a></p>
 
             </div>
-
+            @include('partials.card')
           </div>
         </div>
       </section>

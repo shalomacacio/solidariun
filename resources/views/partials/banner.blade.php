@@ -4,8 +4,7 @@
             <div class="col-md-12">
               <div class="probootstrap-slider-text probootstrap-animate fadeIn probootstrap-animated" data-animate-effect="fadeIn">
                 <h1 class="probootstrap-heading probootstrap-animate fadeInUp probootstrap-animated"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Doe </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Juntos podemos fazer a diferença</font></font></span></h1>
-                <p class="probootstrap-animate fadeInUp probootstrap-animated"><a href="{{ route('campanhas.create') }}" class="btn btn-primary btn-lg"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Criar Campanha</font></font></a></p>
-                {{-- <li class="probootstra-cta-button last"><a href="{{ route('campanhas.create') }}" class="btn btn-primary">{{ Auth::user()->name }}</a></li>   --}}
+                <p class="probootstrap-animate fadeInUp probootstrap-animated"><a href="{{ route('campanhas.create') }}" class="btn btn-ghost btn-lg"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Criar Campanha</font></font></a></p>
             </div>
             </div>
           </div>

@@ -41,6 +41,11 @@ class Campanha extends Model implements Transformable
         return Str::limit($this->description, 120);
     }
 
+    public function getFormattedGoalAttribute()
+    {
+        return $this->attributes['goal'] = number_format($this->goal, 2);
+    }
+
     public function getPercentAttribute()
     {
         return (100/$this->goal ) * $this->reached;
@@ -56,5 +61,10 @@ class Campanha extends Model implements Transformable
         }
         return "Faltam:".$tempo." dias";
     }
+
+    // protected $casts = [
+    //     'goal' => 'decimal:2',
+    // ];
+
 
 }
