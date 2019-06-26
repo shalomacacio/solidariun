@@ -36,14 +36,36 @@ class Campanha extends Model implements Transformable
         'created_at'
     ];
 
+    // caso queira usar titulo como chave primária
+    // public function getTitletAttribute()
+    // {
+    //     return Str::slug($this->title, '-');
+    // }
+
     public function getDescriptionShortAttribute()
     {
         return Str::limit($this->description, 120);
     }
 
-    public function getFormattedGoalAttribute()
+    public function getMetaAttribute()
     {
-        return $this->attributes['goal'] = number_format($this->goal, 2);
+        $value = $this->attributes['goal'];
+        // $result = Str::replaceArray('.', [','], $value );
+        $result = number_format($value,2, ',','.');
+         return $result;
+    }
+
+    public function getArrecadadoAttribute()
+    {
+        $value = $this->attributes['reached'];
+        //$result = Str::replaceArray('.', [','], $value );
+        $result = number_format($value,2, ',','.');
+         return $result;
+    }
+
+    public function setGoalAttribute($value) {
+        $result = Str::replaceArray('.', [''], $value );
+        $this->attributes['goal'] = Str::replaceArray(',',['.'], $result);
     }
 
     public function getPercentAttribute()
@@ -62,9 +84,9 @@ class Campanha extends Model implements Transformable
         return "Faltam:".$tempo." dias";
     }
 
-    // protected $casts = [
-    //     'goal' => 'decimal:2',
-    // ];
+    protected $casts = [
+        'goal' => 'float',
+    ];
 
 
 }

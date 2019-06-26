@@ -19,8 +19,8 @@ class CreateCampanhasTable extends Migration
 			$table->increments('id');
 			$table->string('title')->unique()->notNul();
 			$table->longText('description')->notNul();
-            $table->decimal('goal', 8,2)->notNul();
-            $table->decimal('reached',8,2)->nullable();
+            $table->decimal('goal', 12,2)->notNul();
+            $table->decimal('reached',12,2)->nullable();
             $table->dateTime('dt_final')->notNul();
             $table->string('img')->notNul();
             $table->string('movie')->notNul();
