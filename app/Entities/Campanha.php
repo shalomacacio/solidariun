@@ -50,7 +50,6 @@ class Campanha extends Model implements Transformable
     public function getMetaAttribute()
     {
         $value = $this->attributes['goal'];
-        // $result = Str::replaceArray('.', [','], $value );
         $result = number_format($value,2, ',','.');
          return $result;
     }

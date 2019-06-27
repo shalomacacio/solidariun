@@ -75,7 +75,7 @@
                                 <img src="{{ url("storage/img/site/logo_pagseguro.png") }}" alt="img-campanha" class="img-responsive" width="200" height="200">
                             </div>
                         </div>
-                        <div id="card">
+                        <div id="card" hidden>
                             <div class="col-md-8 probootstrap-animate">
                                 <div class="form-group">
                                     <label for="senderName">Titular do Cartão:</label>
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="cardNumber">Numero do Cartão:</label>
-                                    <input type="text" class="form-control" data-mask="000000000000000" id="cardNumber" name="cardNumber">
+                                    <input type="text" class="form-control" data-mask="0000 000000 00000" id="cardNumber" name="cardNumber">
                                 </div>
 
                                 <div class="col-md-4 probootstrap-animate">
@@ -136,7 +136,7 @@
                         </div>
                         <input type="hidden" class="form-control" id="campanha_id" name="campanha_id" value="{{$campanha->id}}">
                         <input type="text" class="form-control" id="creditCardToken" name="creditCardToken">
-                        <input type="text" class="form-control" id="senderHash" name="senderHash">
+                        <input type="hidden" class="form-control" id="senderHash" name="senderHash">
                         <div class="col-md-4 offset-md-8 ">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary"> Contribuir </button>
@@ -150,44 +150,59 @@
         </div>
       </section>
 
+      @push('scripts')
 
-    @push('scripts')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="{{ PagSeguro::getUrl()['javascript'] }}"></script>
-    @endpush
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+      <script type="text/javascript" src="/pagseguro/javascript"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
-    <script>
-            window.onload = function(){
-                var hash = $('#senderHash').val(PagSeguroDirectPayment.getSenderHash());
-                console.log(hash);
-                PagSeguroDirectPayment.setSessionId('{{ PagSeguro::startSession() }}'); //PagSeguroRecorrente tem um método identico, use o que preferir neste caso, não tem diferença.
-            }
 
-            function cardToken(){
-                PagSeguroDirectPayment.createCardToken({
-                    cardNumber: $("#cardNumber").val(), // Número do cartão de crédito
-                    brand: $("#brand").val(), // Bandeira do cartão
-                    cvv: $("#cvv").val(), // CVV do cartão
-                    expirationMonth: $("#expirationMonth").val(), // Mês da expiração do cartão
-                    expirationYear: $("#expirationYear").val(), // Ano da expiração do cartão, é necessário os 4 dígitos.
-                    success: function(response) {
-                        // console.log(response['brand'])
-                        $('#creditCardToken').val(response['card']['token']);
-                            // Retorna o cartão tokenizado.
-                    },
-                    error: function(response) {
-                                // Callback para chamadas que falharam.
-                                console.log(response)
-                    },
-                    complete: function(response) {
-                            // Callback para todas chamadas.
+
+      <script>
+          window.onload =  function() {
+              var hash = PagSeguroDirectPayment.getSenderHash();
+               $('#senderHash').val(hash.session_id);
+               PagSeguroDirectPayment.setSessionId('{{ PagSeguro::startSession() }}')
+              //console.log(hash);
+          }
+
+
+          function cardToken(){
+            PagSeguroDirectPayment.createCardToken({
+                cardNumber: $("#cardNumber").val(), // Número do cartão de crédito
+                brand: $("#brand").val(), // Bandeira do cartão
+                cvv: $("#cvv").val(), // CVV do cartão
+                expirationMonth: $("#expirationMonth").val(), // Mês da expiração do cartão
+                expirationYear: $("#expirationYear").val(), // Ano da expiração do cartão, é necessário os 4 dígitos.
+                success: function(response) {
+                    // console.log(response['brand'])
+                    $('#creditCardToken').val(response['card']['token']);
+                        // Retorna o cartão tokenizado.
+                },
+                error: function(response) {
+                            // Callback para chamadas que falharam.
                             console.log(response)
-                    }
-                });
+                },
+                complete: function(response) {
+                        // Callback para todas chamadas.
+                        console.log(response)
+                }
+            });
+        }
+
+
+        $('input[name="paymentMethod"]').change(function () {
+
+            if ($('input[name="paymentMethod"]:checked').val() === "creditCard") {
+                $('#card').show();
+            } else {
+                $('#card').hide();
             }
+        });
 
-        </script>
-
-
+      </script>
 @endsection
+
 

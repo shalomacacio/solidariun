@@ -39,7 +39,7 @@ class CampanhasController extends Controller
     {
         $this->repository = $repository;
         $this->validator  = $validator;
-        $this->middleware('auth')->except(['index', 'recentes', 'show']);
+        $this->middleware('auth')->except(['index', 'recentes', 'show', 'home']);
     }
 
     /**
@@ -59,6 +59,18 @@ class CampanhasController extends Controller
             ]);
         }
         return view('campanhas.index', compact('campanhas'));
+    }
+
+    public function home(){
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        $campanhas = $this->repository->scopeQuery(function($query){
+            return $query
+                ->where('flg_active', 1)
+                ->take(3)
+                ->orderBy('created_at','asc');
+        })->all();
+
+        return view('welcome', compact('campanhas'));
     }
 
     public function create(){
