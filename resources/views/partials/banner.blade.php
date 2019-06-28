@@ -19,7 +19,7 @@
                 <div class="text">
                   <h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">É gratuito:</font></font></h2>
                   <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cries sua campanha gratuitamente, descreva seu objetivo e quanto deseja arrecadar e comece imediatamente </font></font></p>
-                  <p><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Criar Campanha</font></font></a></p>
+                  <p><a href="{{ route('campanhas.create') }}" ><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Criar Campanha</font></font></a></p>
                 </div>
               </div>
               <div class="item probootstrap-animate fadeIn probootstrap-animated" data-animate-effect="fadeIn">

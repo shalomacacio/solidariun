@@ -6,11 +6,17 @@
 
   <section class="probootstrap-section">
         <div class="container">
-          <div class="row probootstrap-gutter60">
 
+          <div class="row">
+            <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
+                <h2>{{ $campanha->title }}</h2>
+                <p>{{ $campanha->description_short }}</p>
+            </div>
+          </div>
+          <div class="row probootstrap-gutter60">
             <div class="background_white  col-md-8 col-sm-8 probootstrap-animate">
-              <h2>{{ $campanha->title }}</h2>
-              <p>{{ $campanha->description }}</p> <!--  {{ $campanha->description_short }}  -->
+                    <br/>
+                    <br/>
               <div class="row">
                 <div class="col-md-12 order-md-1">
                   <div class="embed-responsive embed-responsive-16by9">
@@ -18,19 +24,17 @@
                   </div>
                 </div>
               </div>
-              <p>Odio soluta illo repudiandae aut aperiam dolor ipsam laboriosam, vero sit possimus minus quis, ducimus dolorum veritatis nulla facilis earum ex ab repellat quibusdam assumenda! Iusto saepe repellat doloribus in quisquam asperiores ea minus, ipsam aliquam at quam, deserunt velit eum pariatur animi suscipit quos necessitatibus molestias eaque. Voluptatibus natus accusantium at, minus quasi non, nesciunt ea illo atque necessitatibus?</p>
-              <p>In pariatur mollitia, perspiciatis eum sequi minima vitae laborum aut praesentium obcaecati veritatis cum amet voluptas voluptates dolorem numquam, ex quibusdam neque esse. Ex asperiores delectus molestias illum nihil suscipit eaque placeat saepe dignissimos fuga dolore, consequuntur nisi totam id illo necessitatibus! Ducimus libero dolores soluta consequuntur maiores sapiente modi excepturi aliquid voluptate, corrupti, porro, possimus quas quod consequatur repellat.</p>
+              <p>{{ $campanha->description }}
+
               <div class="row">
                 <div class="col-md-6">
-                  <p><a href="img/img_sq_6.jpg" class="image-popup"><img src="img/img_sq_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></a></p>
+                  <p><a href="img/img_sq_6.jpg" class="image-popup"><img src="{{ url("storage/img/campanha/{$campanha->img}") }}" alt="img-campanha" class="img-responsive"></a></p>
                 </div>
                 <div class="col-md-6">
-                  <p><a href="img/img_sq_6.jpg" class="image-popup"><img src="img/img_sq_3.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></a></p>
-                </div>
+                  <p><a href="img/img_sq_6.jpg" class="image-popup"><img src="{{ url("storage/img/campanha/{$campanha->img}") }}" alt="img-campanha" class="img-responsive"></a></p>
+                    </div>
               </div>
-              <p>Odio soluta illo repudiandae aut aperiam dolor ipsam laboriosam, vero sit possimus minus quis, ducimus dolorum veritatis nulla facilis earum ex ab repellat quibusdam assumenda! Iusto saepe repellat doloribus in quisquam asperiores ea minus, ipsam aliquam at quam, deserunt velit eum pariatur animi suscipit quos necessitatibus molestias eaque. Voluptatibus natus accusantium at, minus quasi non, nesciunt ea illo atque necessitatibus?</p>
-              <p>In pariatur mollitia, perspiciatis eum sequi minima vitae laborum aut praesentium obcaecati veritatis cum amet voluptas voluptates dolorem numquam, ex quibusdam neque esse. Ex asperiores delectus molestias illum nihil suscipit eaque placeat saepe dignissimos fuga dolore, consequuntur nisi totam id illo necessitatibus! Ducimus libero dolores soluta consequuntur maiores sapiente modi excepturi aliquid voluptate, corrupti, porro, possimus quas quod consequatur repellat.</p>
-              <p><a href="{{ route('payment', $campanha->id) }}" class="btn btn-primary btn-lg">Solidarizar-se !</a></p>
+              <p><a href="{{ route('payment', $campanha->id) }}" class="btn btn-primary btn-block">Solidarizar-se !</a></p>
             </div>
             @include('partials.card')
           </div>

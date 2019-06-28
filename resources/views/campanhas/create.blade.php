@@ -3,6 +3,15 @@
 @include('partials.space')
 <section class="probootstrap-section">
   <div class="container">
+
+    <div class="row">
+        <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
+            <h2>Criar uma Campanha </h2>
+            <p class="lead">Preencha corretamente todos os campos e divulgue entre seus amigos e redes sociais!</p>
+        </div>
+    </div>
+
+
     <div class="row">
       <form class="probootstrap-form" method="POST" action="{{ route('campanhas.store') }}" enctype="multipart/form-data" >
         @csrf
@@ -54,7 +63,7 @@
             </div>
 
           <div class="form-group">
-            <button type="submit" class="btn btn-ghost"> Criar Campanha </button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block"> Criar Campanha </button>
           </div>
 
           <input id="user_id" name="user_id" type="hidden" value="{{Auth::user()->id}}">

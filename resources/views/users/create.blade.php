@@ -3,10 +3,15 @@
 @include('partials.space')
 <section class="probootstrap-section">
   <div class="container">
+
     <div class="row">
-      <form class="probootstrap-form" method="POST" action="{{ route('users.store') }}" >
+      <form class="  probootstrap-form" method="POST" action="{{ route('users.store') }}" >
         @csrf
-        <div class="col-md-5 probootstrap-animate">
+        <div class="col-md-5 jumbotron probootstrap-animate">
+          <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
+                <h2>CADASTRE-SE</h2>
+                <p class="lead">Estamos muito felizes em ver você por aqui. Conte-nos sobre você!</p>
+          </div>
 
           <div class="form-group">
             <label for="name">Nome</label>
@@ -29,7 +34,7 @@
           </div>
 
           <div class="form-group">
-            <button type="submit" class="btn btn-primary"> Criar Usuário </button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block"> Criar Usuário </button>
           </div>
 
         </div>

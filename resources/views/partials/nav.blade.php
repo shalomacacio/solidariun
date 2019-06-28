@@ -13,7 +13,13 @@
           <div id="navbar-collapse" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="{{ route('site') }}">Home</a></li>
-              <li><a href="{{ route('campanhas.index') }}">Campanhas</a></li>
+
+              <li class="dropdown">
+                  <a href="{{ route('campanhas.index') }}">Campanhas</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ route('campanhas.create') }}">Criar Campanha</a></li>
+                  </ul>
+                </li>
             @guest
                 <li class="probootstra-cta-button last"><a href=" {{ route ('login')}} " class="btn btn-ghost">Login</a></li>
 

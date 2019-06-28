@@ -1,6 +1,12 @@
 /* Your custom css code goes here */
 
 
+
+.background_white {
+background-color: #ffffff;
+border-radius: .50rem!important;
+}
+
 .btn-outline-primary {
     color: #3490dc;
     border-color: #3490dc;
@@ -289,24 +295,6 @@
     box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
   }
 
-
-.btn-block {
-    display: block;
-    width: 100%;
-  }
-
-  .btn-block + .btn-block {
-    margin-top: 0.5rem;
-  }
-
-  input[type="submit"].btn-block,
-  input[type="reset"].btn-block,
-  input[type="button"].btn-block {
-    width: 100%;
-  }
-
-
-
   .input-group {
     position: relative;
     display: flex;
@@ -418,10 +406,10 @@
     align-items: center;
     padding: 0.375rem 0.75rem;
     margin-bottom: 0;
-    font-size: 0.9rem;
+    /* font-size: 0.9rem; */
     font-weight: 400;
     line-height: 1.6;
-    color: #495057;
+    color: #6b7a87;
     text-align: center;
     white-space: nowrap;
     background-color: #e9ecef;
