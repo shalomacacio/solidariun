@@ -14,57 +14,53 @@
                     <form class="probootstrap-form" method="POST" action="{{ route('payments.store') }}" enctype="multipart/form-data" >
                     @csrf
                         <div class="col-md-12">
-                                <label for="itemAmount">Valor:</label>
-                            <div class="input-group">
-                                    <input type="text" class="form-control"  id="itemAmount" name="itemAmount" data-symbol="R$ " data-thousands="." data-decimal="," placeholder="Digite o Valor ou  =>">
+                            <label for="itemAmount">Quero contribuir com:</label>
+                            <div class="input-group mb-3">
                                     <div class="input-group-prepend" >
-                                    <button class="btn btn-primary" type="button">R$ 25</button>
-                                    <button class="btn btn-primary" type="button">R$ 50</button>
-                                    <button class="btn btn-primary" type="button">R$ 75</button>
-                                    <button class="btn btn-primary" type="button">R$ 100</button>
-                                </div>
+                                        <span class="input-group-text">R$</span>
+                                    </div>
+                                    <input type="text" class="form-control"  id="itemAmount" name="itemAmount" data-symbol="R$ " data-thousands="." data-decimal="," placeholder="Digite o Valor ou  =>" required>
+                                    <div class="input-group-append" >
+                                        <button class="btn btn-primary" type="button">R$ 25</button>
+                                        <button class="btn btn-primary" type="button">R$ 50</button>
+                                        <button class="btn btn-primary" type="button">R$ 75</button>
+                                        <button class="btn btn-primary" type="button">R$ 100</button>
+                                    </div>
                             </div>
                         </div>
 
                         <div class="col-md-6  probootstrap-animate">
                             <div class="form-group">
                                 <label for="name">Nome:</label>
-                                <input type="text" class="form-control" id="name" name="name">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 probootstrap-animate">
-                            <div class="form-group">
-                                <label for="itemAmount">Valor:</label>
-                                <input type="text" class="form-control"  id="itemAmount" name="itemAmount" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal=",">
+                                <input type="text" class="form-control" id="name" name="name" required>
                             </div>
                         </div>
 
                         <div class="col-md-6 probootstrap-animate">
                             <div class="form-group">
                                 <label for="senderEmail">Email:</label>
-                                <input type="text" class="form-control" id="senderEmail" name="senderEmail">
+                                <input type="text" class="form-control" id="senderEmail" name="senderEmail" required>
                             </div>
                         </div>
 
                         <div class="col-md-4 probootstrap-animate">
                             <div class="form-group">
                                 <label for="creditCardHolderBirthDate">Data de Nascimento:</label>
-                                <input type="date" class="form-control" id="creditCardHolderBirthDate" name="creditCardHolderBirthDate">
+                                <input type="date" class="form-control" id="creditCardHolderBirthDate" name="creditCardHolderBirthDate" required>
                             </div>
                         </div>
 
                         <div class="col-md-4 probootstrap-animate">
                             <div class="form-group">
                                 <label for="senderPhone">Celular:</label>
-                                <input type="text" class="form-control" data-mask="(00) 00000-0000" id="senderPhone" name="senderPhone">
+                                <input type="text" class="form-control" data-mask="(00) 00000-0000" id="senderPhone" name="senderPhone" required>
                             </div>
                         </div>
 
                         <div class="col-md-4 probootstrap-animate">
                             <div class="form-group">
                                 <label for="senderCPF">CPF:</label>
-                                <input type="text" class="form-control" data-mask="000.000.000-00" id="senderCPF" name="senderCPF">
+                                <input type="text" class="form-control" data-mask="000.000.000-00" id="senderCPF" name="senderCPF" required>
                             </div>
                         </div>
 
@@ -72,29 +68,27 @@
                             <div class="form-group">
                                 <label for="senderCPF">Forma de Doação:</label>
                                 <div class="custom-control custom-radio">
-                                    <input id="boleto" name="paymentMethod" type="radio" value="boleto" class="custom-control-input" checked required>
+                                    <input id="boleto" onclick="sendHash()" name="paymentMethod" type="radio" value="boleto" class="custom-control-input" required>
                                     <label class="custom-control-label"  for="boleto">Boleto</label>
                                 </div>
 
                                 <div class="custom-control custom-radio">
-                                    <input id="credito" name="paymentMethod" type="radio" value="creditCard" class="custom-control-input"  required>
+                                    <input id="credito"  onclick="sendHash()"  name="paymentMethod" type="radio" value="creditCard" class="custom-control-input"  required>
                                     <label class="custom-control-label"  for="credito">Cartão de crédito</label>
                                 </div>
                             </div>
 
-                        <div class="">
+                            <div >
                                 <img src="{{ url("storage/img/site/logo_pagseguro.png") }}" alt="img-campanha" class="img-responsive" width="200" height="200">
                             </div>
                         </div>
-                        <div id="card" {{--hidden--}}>
+                        <div id="card" hidden>
                             <div class="col-md-8 probootstrap-animate">
-                                <div class="form-group">
-                                    <label for="senderName">Titular do Cartão:</label>
-                                    <input type="text" class="form-control" id="senderName" name="senderName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="cardNumber">Numero do Cartão:</label>
-                                    <input type="text" class="form-control" data-mask="0000000000000000" id="cardNumber" name="cardNumber">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="cardNumber">Numero do Cartão:</label>
+                                        <input type="text" class="form-control" data-mask="0000000000000000" id="cardNumber" name="cardNumber">
+                                    </div>
                                 </div>
 
                                 <div class="col-md-4 probootstrap-animate">
@@ -123,35 +117,47 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4"></div>
-                            <div class="col-md-3 probootstrap-animate">
-                                <div class="form-group">
-                                    <label for="expirationMonth">Mês:</label>
-                                    <input type="text" class="form-control" data-mask="00" id="expirationMonth" name="expirationMonth">
-                                </div>
-                            </div>
+                            <div class="col-md-8 probootstrap-animate">
 
-                            <div class="col-md-3 probootstrap-animate">
-                                <div class="form-group">
-                                    <label for="expirationYear">Ano:</label>
-                                    <input type="text" class="form-control" data-mask="0000"  id="expirationYear" name="expirationYear">
+                                <div class="col-md-4 probootstrap-animate">
+                                    <div class="form-group">
+                                        <label for="expirationMonth">Mês:</label>
+                                        <input type="text" class="form-control" data-mask="00" id="expirationMonth" name="expirationMonth">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-md-2 probootstrap-animate">
-                                <div class="form-group">
-                                    <label for="cvv">CVV:</label>
-                                    <input type="text" class="form-control" data-mask="0000" id="cvv" name="cvv">
+                                <div class="col-md-4 probootstrap-animate">
+                                    <div class="form-group">
+                                        <label for="expirationYear">Ano:</label>
+                                        <input type="text" class="form-control" data-mask="0000"  id="expirationYear" name="expirationYear">
+                                    </div>
                                 </div>
+
+                                <div class="col-md-4 probootstrap-animate">
+                                    <div class="form-group">
+                                        <label for="cvv">CVV:</label>
+                                        <input type="text" onblur="cardToken()" class="form-control" data-mask="0000" id="cvv" name="cvv">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="senderName">Titular do Cartão:</label>
+                                        <input type="text" class="form-control" id="senderName" name="senderName">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         <input type="hidden" class="form-control" id="campanha_id" name="campanha_id" value="{{$campanha->id}}">
-                        <input type="text" class="form-control" id="creditCardToken" name="creditCardToken">
-                        <input type="text" class="form-control" id="senderHash" name="senderHash">
-                        <div class="col-md-4 offset-md-8 ">
+                        <input type="hidden" class="form-control" id="campanha_title" name="campanha_title" value="{{$campanha->title}}">
+                        <input type="hidden" class="form-control" id="creditCardToken" name="creditCardToken">
+                        <input type="hidden" class="form-control" id="senderHash" name="senderHash">
+
+                        <div class="col-md-4 "></div>
+                        <div class="col-md-8 ">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary"> Contribuir </button>
-                                <button type="button" onclick="cardToken()" class="btn btn-primary">pgar codigo </button>
+                                <button type="submit" class="btn btn-primary btn-block btn-lg"> Contribuir </button>
                             </div>
                         </div>
                     </form>
@@ -167,12 +173,8 @@
         <script type="text/javascript" src="{{ PagSeguro::getUrl()['javascript'] }}"></script>
         <script src="{{asset('js/jquery.maskMoney.js')}}"></script>
 
-        <script>
-            $("#goal").maskMoney();
-        </script>
-
     <script>
-            window.onload = function(){
+            function sendHash(){
                 var hash = $('#senderHash').val(PagSeguroDirectPayment.getSenderHash());
                 console.log(hash);
                 PagSeguroDirectPayment.setSessionId('{{ PagSeguro::startSession() }}'); //PagSeguroRecorrente tem um método identico, use o que preferir neste caso, não tem diferença.
@@ -201,19 +203,25 @@
                 });
             };
 
-            // $('input[name="paymentMethod"]').change(function () {
-            //     if ($('input[name="paymentMethod"]:checked').val() === "creditCard") {
-            //         $('#card').show();
-            //     } else {
-            //         $('#card').hide();
-            //     }
-            // });
+            $('input[name="paymentMethod"]').change(function () {
+                if ($('input[name="paymentMethod"]:checked').val() === "creditCard") {
+                    $('#card').show();
+                        activeInput(false)
+                } else {
+                    $('#card').hide();
+                    activeInput(true)
+                }
+            });
 
-
-            $(function() {
-                $('#itemAmount').maskMoney();
-            })
-
+            function activeInput(value){
+                var result = value;
+                $( "#cardNumber" ).prop( "disabled", result );
+                $( "#brand" ).prop( "disabled", result );
+                $( "#expirationMonth" ).prop( "disabled", result );
+                $( "#expirationYear" ).prop( "disabled", result );
+                $( "#cvv" ).prop( "disabled", result );
+                $( "#senderName" ).prop( "disabled", result );
+            }
 
         </script>
 

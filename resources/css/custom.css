@@ -1,7 +1,5 @@
 /* Your custom css code goes here */
 
-/* Your custom css code goes here */
-
 
 .btn-outline-primary {
     color: #3490dc;
@@ -289,6 +287,22 @@
   .btn-outline-dark:not(:disabled):not(.disabled).active:focus,
   .show > .btn-outline-dark.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
+  }
+
+
+.btn-block {
+    display: block;
+    width: 100%;
+  }
+
+  .btn-block + .btn-block {
+    margin-top: 0.5rem;
+  }
+
+  input[type="submit"].btn-block,
+  input[type="reset"].btn-block,
+  input[type="button"].btn-block {
+    width: 100%;
   }
 
 
