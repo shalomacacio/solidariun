@@ -13,9 +13,21 @@
               <div class="row ">
                     <form class="probootstrap-form" method="POST" action="{{ route('payments.store') }}" enctype="multipart/form-data" >
                     @csrf
+                        <div class="col-md-12">
+                                <label for="itemAmount">Valor:</label>
+                            <div class="input-group">
+                                    <input type="text" class="form-control"  id="itemAmount" name="itemAmount" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal=",">
+                                    <div class="input-group-prepend" >
+                                    <button class="btn btn-primary" type="button">R$ 20</button>
+                                    <button class="btn btn-primary" type="button">R$ 30</button>
+                                    <button class="btn btn-primary" type="button">R$ 50</button>
+                                    <button class="btn btn-primary" type="button">R$ 70</button>
+                                    <button class="btn btn-primary" type="button">R$ 100</button>
+                                </div>
+                            </div>
+                        </div>
 
-
-                        <div class="col-md-12  probootstrap-animate">
+                        <div class="col-md-6  probootstrap-animate">
                             <div class="form-group">
                                 <label for="name">Nome:</label>
                                 <input type="text" class="form-control" id="name" name="name">
@@ -25,7 +37,7 @@
                         <div class="col-md-6 probootstrap-animate">
                             <div class="form-group">
                                 <label for="itemAmount">Valor:</label>
-                                <input type="text" class="form-control"  id="itemAmount" name="itemAmount">
+                                <input type="text" class="form-control"  id="itemAmount" name="itemAmount" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal=",">
                             </div>
                         </div>
 
@@ -75,7 +87,7 @@
                                 <img src="{{ url("storage/img/site/logo_pagseguro.png") }}" alt="img-campanha" class="img-responsive" width="200" height="200">
                             </div>
                         </div>
-                        <div id="card">
+                        <div id="card" {{--hidden--}}>
                             <div class="col-md-8 probootstrap-animate">
                                 <div class="form-group">
                                     <label for="senderName">Titular do Cartão:</label>
@@ -83,7 +95,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="cardNumber">Numero do Cartão:</label>
-                                    <input type="text" class="form-control" data-mask="000000000000000" id="cardNumber" name="cardNumber">
+                                    <input type="text" class="form-control" data-mask="0000000000000000" id="cardNumber" name="cardNumber">
                                 </div>
 
                                 <div class="col-md-4 probootstrap-animate">
@@ -152,7 +164,6 @@
 
 
     @push('scripts')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="{{ PagSeguro::getUrl()['javascript'] }}"></script>
     @endpush
 
@@ -161,7 +172,7 @@
                 var hash = $('#senderHash').val(PagSeguroDirectPayment.getSenderHash());
                 console.log(hash);
                 PagSeguroDirectPayment.setSessionId('{{ PagSeguro::startSession() }}'); //PagSeguroRecorrente tem um método identico, use o que preferir neste caso, não tem diferença.
-            }
+            };
 
             function cardToken(){
                 PagSeguroDirectPayment.createCardToken({
@@ -184,9 +195,25 @@
                             console.log(response)
                     }
                 });
-            }
+            };
+
+            // $('input[name="paymentMethod"]').change(function () {
+            //     if ($('input[name="paymentMethod"]:checked').val() === "creditCard") {
+            //         $('#card').show();
+            //     } else {
+            //         $('#card').hide();
+            //     }
+            // });
+
+
+            $(function() {
+                $('#itemAmount').maskMoney();
+            })
+
 
         </script>
+
+
 
 
 @endsection

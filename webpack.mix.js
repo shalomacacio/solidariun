@@ -33,7 +33,8 @@ mix.js('resources/js/app.js', 'public/js')
     'resources/js/vendor/jquery.magnific-popup.min.js',
     'resources/js/vendor/owl.carousel.min.js',
     'resources/js/vendor/bootstrap.min.js',
-    'resources/js/vendor/jquery.waypoints.min.js'
+    'resources/js/vendor/jquery.waypoints.min.js',
+    'resources/js/vendor/jquery.maskMoney.min.js'
     ],'public/js/scripts.js');
 
 mix.copy([

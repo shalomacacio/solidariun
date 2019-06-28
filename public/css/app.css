@@ -78,7 +78,7 @@ a {
 		box-shadow: 0px 2px 10px 0px rgba(0,0,0,.1);
 	}
 
-	
+
 
 	// animate hamburger menu
 	.navbar-toggle {
@@ -117,7 +117,7 @@ a {
 	.navbar-toggle.collapsed span:nth-child(3) {
 	  opacity: 1;
 	}
-	
+
 	// nav link padding
 	.parent-nav-link-padding {
 		padding-top: 34px;
@@ -138,7 +138,7 @@ a {
 		text-transform: uppercase;
 	}
 	.dropdown {
-		
+
 		> a {
 			padding-right: 10px!important;
 			position: relative;
@@ -164,7 +164,7 @@ a {
 			}
 			&:hover {
 				&:before {
-					transform: rotate(180deg);	
+					transform: rotate(180deg);
 				}
 			}
 		}
@@ -176,11 +176,11 @@ a {
 				@media screen and (max-width: $screen-sm) {
 					// border-top: 2px solid transparent;
 				}
-				
+
 				&:before {
-					transform: rotate(180deg);	
+					transform: rotate(180deg);
 				}
-				
+
 			}
 		}
 
@@ -203,16 +203,16 @@ a {
 						background: none!important;
 					}
 				}
-			
+
 				&.dropdown-submenu {
 					&.open, &:hover, &:focus, &:active {
 						> a {
 							border-top: none;
-							
+
 							&:before {
 								color: $brand-black;
 							}
-							
+
 						}
 					}
 				}
@@ -227,7 +227,7 @@ a {
 	.navbar-right {
     .dropdown-menu {
       right: auto;
-    }  
+    }
   }
 	.dropdown-menu {
 		border: none;
@@ -238,9 +238,9 @@ a {
 
 		min-width: 200px;
 		white-space: normal;
-		word-wrap: break-word; 
+		word-wrap: break-word;
 		a {
-			white-space: normal; 
+			white-space: normal;
 		}
 
 		@media screen and (max-width: $screen-sm) {
@@ -251,7 +251,7 @@ a {
 			}
 		}
 	}
-	
+
 	.navbar-brand {
 		@extend .parent-nav-link-padding;
 		padding-top: 0!important;
@@ -271,8 +271,8 @@ a {
 			margin-top: 20px;
 			margin-bottom: 20px;
 		}
-		
-		
+
+
 		// retina logo
 		@media
 		only screen and (-webkit-min-device-pixel-ratio: 2),
@@ -280,7 +280,7 @@ a {
 		only screen and (     -o-min-device-pixel-ratio: 2/1),
 		only screen and (        min-device-pixel-ratio: 2),
 		only screen and (                min-resolution: 192dpi),
-		only screen and (                min-resolution: 2dppx) { 
+		only screen and (                min-resolution: 2dppx) {
 			position: relative;
 	  	width: 220px;
 			height: 43px;
@@ -385,7 +385,7 @@ a {
 						margin-right: 0;
 						@media screen and (max-width: $screen-sm) {
 							margin-left: 15px;
-							margin-right: 15px;		
+							margin-right: 15px;
 						}
 					}
 				}
@@ -411,7 +411,7 @@ a {
 	    margin-top: -1px;
     }
     > a {
-    	
+
 			display: block;
 			&:before {
 				@include icomoon;
@@ -428,14 +428,14 @@ a {
 					color: rgba(0,0,0,.2);
 				}
 			}
-    	
+
     	&:hover {
-				
+
 				&:before {
 					color: rgba($brand-black, .3);
-					transform: rotate(180deg);	
+					transform: rotate(180deg);
 				}
-				
+
 			}
     }
     @media screen and (max-width: $screen-xs) {
@@ -443,10 +443,10 @@ a {
 				> .dropdown-menu {
 					display: block;
 				}
-    	}	
+    	}
     }
 	}
-	
+
 	// submenu for navbar-right
 	.navbar-right {
 		.dropdown-submenu {
@@ -462,7 +462,7 @@ a {
  	}
 
 
-	
+
 }
 
 // container fluid dropdown-menu
@@ -483,7 +483,7 @@ a {
 				> .dropdown-menu {
 					display: block;
 				}
-    	}	
+    	}
     }
 	}
 }
@@ -601,7 +601,7 @@ a {
 					color: $brand-white;
 					text-decoration: underline;
 				}
-				
+
 			}
 		}
 	}
@@ -635,7 +635,7 @@ a {
 			border: 1px solid $brand-black;
 		}
 		&:active {
-			
+
 		}
 		&:focus {
 
@@ -683,7 +683,7 @@ a {
 		border-top: 1px solid rgba(0,0,0,.1);
 	}
 	&.probootstrap-border-bottom {
-		border-bottom: 1px solid rgba(0,0,0,.1);	
+		border-bottom: 1px solid rgba(0,0,0,.1);
 	}
 	> .container {
 		&.probootstrap-border-top {
@@ -906,7 +906,7 @@ a {
 				padding: 0;
 				list-style: none;
 			}
-			
+
 		}
 		.probootstrap-contact-info {
 			li {
@@ -1120,9 +1120,9 @@ a {
 		}
 		&:first-child {
 			> a {
-				padding-left: 0;	
+				padding-left: 0;
 			}
-			
+
 		}
 	}
 }
@@ -1270,7 +1270,7 @@ a {
 // 		width: 67%;
 // 		background-size: cover;
 // 		background-repeat: no-repeat;
-// 		margin-right: 0px;	
+// 		margin-right: 0px;
 // 		position: relative;
 // 		.btn-video {
 // 			display: block;
@@ -1655,7 +1655,7 @@ a {
 		margin-bottom: 0px;
 		transition:all 0.3s ease-in-out;
 		-moz-transition:all 0.3s ease-in-out;
-		-webkit-transition:all 0.3s ease-in-out;	
+		-webkit-transition:all 0.3s ease-in-out;
 	}
 	.two-cols & {
 
@@ -1732,7 +1732,7 @@ a {
 	margin-bottom: 50px;
 	label {
 		font-weight: normal;
-	}	
+	}
 	.form-control {
 		height: 46px;
 		box-shadow: none;
@@ -1745,7 +1745,7 @@ a {
 	}
 	textarea.form-control {
 		height: inherit;
-		resize:vertical; 
+		resize:vertical;
 	}
 }
 
@@ -1761,7 +1761,7 @@ a {
 // modal center
 .modal {
 	.modal-content {
-		box-shadow: none;	
+		box-shadow: none;
 		border-radius: 0;
 		border: none;
 		position: relative;
@@ -1947,7 +1947,7 @@ a {
 		margin-top: 20px;
 		z-index: 3;
 		display: block;
-		
+
 		@media screen and (max-width: $screen-xs) {
 			position: relative;
 			top: inherit!important;
@@ -2110,7 +2110,7 @@ a {
 			font-size: 14px;
 		}
 	}
-	
+
 	.probootstrap-price-wrap {
 		margin-bottom: 50px;
 		.probootstrap-price {
@@ -2204,7 +2204,7 @@ a {
   border: none;
   margin: 0 0 0;
   @extend .slider-height;
-  
+
   .slides {
   	> li {
   		@extend .slider-height;
@@ -2334,7 +2334,7 @@ a {
 			border-radius: 4px;
 			overflow: hidden;
 		}
-		
+
 	}
 }
 .owl-carousel .owl-controls,
@@ -2359,12 +2359,12 @@ a {
 .owl-carousel .owl-controls .owl-nav .owl-next,
 .owl-carousel-posts .owl-controls .owl-nav .owl-next {
 	right: 20px;
-	
+
 }
 .owl-carousel .owl-controls .owl-nav .owl-prev,
 .owl-carousel-posts .owl-controls .owl-nav .owl-prev {
 	left: 20px;
-	
+
 }
 
 .owl-carousel-posts .owl-controls .owl-nav .owl-next,
@@ -2376,7 +2376,7 @@ a {
 	}
 	&:hover {
 		i {
-			color: $brand-black;		
+			color: $brand-black;
 		}
 	}
 }
@@ -2416,16 +2416,16 @@ a {
 }
 .owl-theme .owl-dots {
 	position: absolute;
-	bottom: -30px;	
+	bottom: -30px;
 	width: 100%;
 	text-align: center;
 }
 .owl-carousel-fullwidth.owl-theme .owl-dots {
-	bottom: -30px;	
+	bottom: -30px;
 	margin-bottom: -2.5em;
 }
 .owl-work.owl-theme .owl-dots {
-	bottom: -30px;	
+	bottom: -30px;
 	margin-bottom: -2.5em;
 }
 .owl-theme .owl-dots .owl-dot span {
@@ -2452,7 +2452,7 @@ a {
 		p {
 			color: rgba($brand-white, .9)!important;
 		}
-	}	
+	}
 	.owl-theme .owl-dots .owl-dot span {
 		background: rgba($brand-white, .2);
 		&:hover {
@@ -2469,8 +2469,8 @@ a {
 // magnific popup
 .mfp-fade.mfp-bg {
   opacity: 0;
-  -webkit-transition: all 0.15s ease-out; 
-  -moz-transition: all 0.15s ease-out; 
+  -webkit-transition: all 0.15s ease-out;
+  -moz-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out;
 }
 .mfp-fade.mfp-bg.mfp-ready {
@@ -2482,8 +2482,8 @@ a {
 
 .mfp-fade.mfp-wrap .mfp-content {
   opacity: 0;
-  -webkit-transition: all 0.15s ease-out; 
-  -moz-transition: all 0.15s ease-out; 
+  -webkit-transition: all 0.15s ease-out;
+  -moz-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out;
 }
 .mfp-fade.mfp-wrap.mfp-ready .mfp-content {
@@ -2505,9 +2505,9 @@ a {
 .mfp-with-zoom.mfp-bg {
 	opacity: 0;
 	-webkit-backface-visibility: hidden;
-	-webkit-transition: all 0.3s ease-out; 
-	-moz-transition: all 0.3s ease-out; 
-	-o-transition: all 0.3s ease-out; 
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out;
 }
 
@@ -2518,7 +2518,7 @@ a {
 		opacity: 0.8;
 }
 
-.mfp-with-zoom.mfp-removing .mfp-container, 
+.mfp-with-zoom.mfp-removing .mfp-container,
 .mfp-with-zoom.mfp-removing.mfp-bg {
 	opacity: 0;
 }
