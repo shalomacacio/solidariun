@@ -16,12 +16,11 @@
                         <div class="col-md-12">
                                 <label for="itemAmount">Valor:</label>
                             <div class="input-group">
-                                    <input type="text" class="form-control"  id="itemAmount" name="itemAmount" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal=",">
+                                    <input type="text" class="form-control"  id="itemAmount" name="itemAmount" data-symbol="R$ " data-thousands="." data-decimal="," placeholder="Digite o Valor ou  =>">
                                     <div class="input-group-prepend" >
-                                    <button class="btn btn-primary" type="button">R$ 20</button>
-                                    <button class="btn btn-primary" type="button">R$ 30</button>
+                                    <button class="btn btn-primary" type="button">R$ 25</button>
                                     <button class="btn btn-primary" type="button">R$ 50</button>
-                                    <button class="btn btn-primary" type="button">R$ 70</button>
+                                    <button class="btn btn-primary" type="button">R$ 75</button>
                                     <button class="btn btn-primary" type="button">R$ 100</button>
                                 </div>
                             </div>
@@ -164,8 +163,13 @@
 
 
     @push('scripts')
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="{{ PagSeguro::getUrl()['javascript'] }}"></script>
-    @endpush
+        <script src="{{asset('js/jquery.maskMoney.js')}}"></script>
+
+        <script>
+            $("#goal").maskMoney();
+        </script>
 
     <script>
             window.onload = function(){
@@ -213,8 +217,10 @@
 
         </script>
 
-
-
+        <script>
+            $("#itemAmount").maskMoney();
+        </script>
+@endpush
 
 @endsection
 
