@@ -23,4 +23,6 @@ Route::resource('users', 'UsersController');
 
 Route::get('payments/{id}/solidarizar_se', 'PaymentsController@solidarizar_se')->name('payment');
 Route::post('payments/pay', 'PaymentsController@pay')->name('payments.pay');
+Route::match(array('GET','POST'),'payments/notifications', 'PaymentsController@notifications')->name('payments.notifications');
+// Route::post('payments/notifications', 'PaymentsController@notifications')->name('payments.notifications');
 Route::resource('payments', 'PaymentsController');

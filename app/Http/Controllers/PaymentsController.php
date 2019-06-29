@@ -2,7 +2,7 @@
 
 namespace Solidariun\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 
 use Solidariun\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
@@ -12,6 +12,9 @@ use Solidariun\Http\Requests\PaymentUpdateRequest;
 use Solidariun\Repositories\PaymentRepository;
 use Solidariun\Repositories\CampanhaRepository;
 use Solidariun\Validators\PaymentValidator;
+
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 use Carbon\Carbon;
 use PagSeguro;
 /**
@@ -278,6 +281,12 @@ class PaymentsController extends Controller
              return redirect()->back()->with('message', $response['message']);
          }
 
+    }
 
+
+    public function notifications(Request $request ){
+        header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
+        $result = PagSeguro::notification($request->notificationCode, $request->notificationType);
+        Log::info('Notific: '.$result );
     }
 }
