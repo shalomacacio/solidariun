@@ -5,6 +5,7 @@ namespace Solidariun\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use Illuminate\Support\Str;
 
 /**
  * Class Payment.
@@ -21,30 +22,18 @@ class Payment extends Model implements Transformable
      * @var array
      */
     protected $fillable = [
-        'photo',
-		'senderName',
-        'senderPhone',
-        'senderEmail',
-        'senderHash',
-        'senderCPF',
-        'creditCardHolderName',
-        'creditCardHolderPhone',
-        'creditCardHolderCPF',
-        'creditCardHolderBirthDate',
-        'shippingAddressStreet',
-        'shippingAddressNumber',
-        'shippingAddressDistrict',
-        'shippingAddressPostalCode',
-        'shippingAddressCity',
-        'shippingAddressState',
-        'itemId',
-        'itemDescription',
-        'itemAmount',
-        'itemQuantity',
-        'paymentMethod',
-        'creditCardToken',
-        'installmentQuantity',
-        'installmentValue'
-	];
+        'name',
+        'campanha_id',
+        'code',
+        'status',
+        'payment_link',
+        'payment_method',
+        'item_amount',
+
+		'sender_name',
+        'sender_phone',
+        'sender_email',
+        'sender_cpf',
+    ];
 
 }

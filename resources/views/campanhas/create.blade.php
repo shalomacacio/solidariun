@@ -35,7 +35,7 @@
 
           <div class="form-group">
             <label for="description">Descrição (min:200 caracteres) <span id="cont">  </span> </label>
-            <textarea id="description" rows="5" type="text" class="form-control" name="description" required></textarea>
+            <textarea id="description" rows="8" type="text" class="form-control" name="description" required></textarea>
           </div>
 
         </div>

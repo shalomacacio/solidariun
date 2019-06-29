@@ -12,6 +12,7 @@ use Solidariun\Http\Requests\PaymentUpdateRequest;
 use Solidariun\Repositories\PaymentRepository;
 use Solidariun\Repositories\CampanhaRepository;
 use Solidariun\Validators\PaymentValidator;
+use Carbon\Carbon;
 use PagSeguro;
 /**
  * Class PaymentsController.
@@ -74,21 +75,12 @@ class PaymentsController extends Controller
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
+
     public function store(PaymentCreateRequest $request)
     {
         try {
-
-
-          // $requestCard =  $this->pay($request);
-
-           //return dd($request);
-
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $imageName = time().'.'.request()->photo->getClientOriginalExtension();
-            $upload = $request->img->storeAs('photo/campanha', $imageName);
-
-            $payment = $this->repository->create($request->all());
+            $payment = $this->repository->create($request);
 
             $response = [
                 'message' => 'Payment created.',
@@ -220,46 +212,72 @@ class PaymentsController extends Controller
         return redirect()->back()->with('message', 'Payment deleted.');
     }
 
+    public function currency($valor){
+        $valor = str_replace("." , "" , $valor ); // Primeiro tira os pontos
+        $valor = str_replace("," , "." , $valor); // Depois tira a vírgula
+        return number_format($valor,2,".","");
+    }
 
-    public function pay($request){
 
-        //return dd($request);
-        //https://sandbox.pagseguro.uol.com.br/checkout/payment/booklet/print.jhtml?c=74cc63f7ca49daed817936e0646a51b18f0343aa675d3259c8862725d771ea12735280586aacca31
+    public function pay(PaymentCreateRequest $request)
+    {
+        $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+
         $pagseguro = PagSeguro::setReference($request->campanha_id)
         ->setSenderInfo([
-          'senderName' => $request->senderName, //Deve conter nome e sobrenome
-          'senderPhone' => '(85) 98704-7679', //Código de área enviado junto com o telefone
-          'senderEmail' => $request->senderEmail,
+          'senderName' => $request->name, //Deve conter nome e sobrenome
+          'senderPhone' => $request->sender_phone, //'(85) 98704-7679', //Código de área enviado junto com o telefone
+          'senderEmail' => $request->sender_email,
           'senderHash' => $request->senderHash,
-          'senderCPF' => $request->senderCPF, //Ou CNPJ se for Pessoa Júridica
+          'senderCPF' => $request->sender_cpf,  //Ou CNPJ se for Pessoa Júridica
         ])
         ->setCreditCardHolder([
-          'creditCardHolderBirthDate' => '10/02/2000',
+          'creditCardHolderBirthDate' => Carbon::parse( $request->creditCardHolderBirthDate)->format('d/m/Y'),  //'10/02/2000',
         ])
         ->setShippingAddress([
-          'shippingAddressStreet' => 'Rua/Avenida',
-          'shippingAddressNumber' => 'Número',
-          'shippingAddressDistrict' => 'Bairro',
+          'shippingAddressStreet' => 'Não informado',
+          'shippingAddressNumber' => 'Não informado',
+          'shippingAddressDistrict' => 'Não informado',
           'shippingAddressPostalCode' => '12345-678',
-          'shippingAddressCity' => 'Maranguape',
+          'shippingAddressCity' => 'Não informado',
           'shippingAddressState' => 'CE'
         ])
         ->setItems([
           [
-            'itemId' => 'ID',
-            'itemDescription' => 'Nome do Item',
-            'itemAmount' => $request->itemAmount, //Valor unitário
+            'itemId' => '1',
+            'itemDescription' => $request->campanha_title,
+            'itemAmount' => $this->currency($request->item_amount), //Valor unitário
             'itemQuantity' => '1', // Quantidade de itens
           ]
         ])
         ->send([
-          'paymentMethod' => $request->paymentMethod,
+          'paymentMethod' => $request->payment_method,
           'creditCardToken' => $request->creditCardToken,
           'installmentQuantity' => '1',
-          'installmentValue' => $request->itemAmount, //apenas se for parcelado
+          'installmentValue' => $this->currency($request->item_amount), //apenas se for parcelado
         ]);
 
-        return $pagseguro;
+        // return $pagseguro;
          //$pagseguro->paymentLink;
+
+         //se houver retorno do pagseguro grava no bando
+         if($pagseguro ){
+            $input = $request->all();
+            $input['code'] = $pagseguro->code;
+            $input['status'] = $pagseguro->status;
+
+             if($request->paymentMethod == "boleto"){
+                $input['payment_link'] = $pagseguro->paymentLink;
+             }
+
+             $payment = $this->repository->create($input);
+             $response = [
+                'message' => 'Payment created.',
+                'data'    => $payment->toArray(),
+            ];
+             return redirect()->back()->with('message', $response['message']);
+         }
+
+
     }
 }

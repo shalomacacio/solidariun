@@ -11,20 +11,20 @@
 
             <div class="jumbotron col-md-8 col-sm-8 probootstrap-animate">
               <div class="row ">
-                    <form class="probootstrap-form" method="POST" action="{{ route('payments.store') }}" enctype="multipart/form-data" >
+                    <form class="probootstrap-form" method="POST" action="{{ route('payments.pay') }}" enctype="multipart/form-data" >
                     @csrf
                         <div class="col-md-12">
-                            <label for="itemAmount">Quero contribuir com:</label>
+                            <label for="item_amount">Quero contribuir com:</label>
                             <div class="input-group mb-3">
                                     <div class="input-group-prepend" >
                                         <span class="input-group-text">R$</span>
                                     </div>
-                                    <input type="text" class="form-control"  id="itemAmount" name="itemAmount" data-symbol="R$ " data-thousands="." data-decimal="," placeholder="Digite o Valor ou  =>" required>
+                                    <input type="text" class="form-control"  id="item_amount" name="item_amount" data-symbol="R$ " data-thousands="." data-decimal="," placeholder="Digite o Valor ou  =>" required>
                                     <div class="input-group-append" >
-                                        <button class="btn btn-primary" type="button">R$ 25</button>
-                                        <button class="btn btn-primary" type="button">R$ 50</button>
-                                        <button class="btn btn-primary" type="button">R$ 75</button>
-                                        <button class="btn btn-primary" type="button">R$ 100</button>
+                                        <button class="btn btn-primary btnAmount" type="button"  value="25,00">R$ 25</button>
+                                        <button class="btn btn-primary btnAmount" type="button"  value="50,00">R$ 50</button>
+                                        <button class="btn btn-primary btnAmount" type="button"  value="75,00">R$ 75</button>
+                                        <button class="btn btn-primary btnAmount" type="button"  value="100,00">R$ 100</button>
                                     </div>
                             </div>
                         </div>
@@ -38,8 +38,8 @@
 
                         <div class="col-md-6 probootstrap-animate">
                             <div class="form-group">
-                                <label for="senderEmail">Email:</label>
-                                <input type="text" class="form-control" id="senderEmail" name="senderEmail" required>
+                                <label for="sender_email">Email:</label>
+                                <input type="text" class="form-control" id="sender_email" name="sender_email" required>
                             </div>
                         </div>
 
@@ -52,15 +52,15 @@
 
                         <div class="col-md-4 probootstrap-animate">
                             <div class="form-group">
-                                <label for="senderPhone">Celular:</label>
-                                <input type="text" class="form-control" data-mask="(00) 00000-0000" id="senderPhone" name="senderPhone" required>
+                                <label for="sender_phone">Celular:</label>
+                                <input type="text" class="form-control" data-mask="(00) 00000-0000" id="sender_phone" name="sender_phone" required>
                             </div>
                         </div>
 
                         <div class="col-md-4 probootstrap-animate">
                             <div class="form-group">
-                                <label for="senderCPF">CPF:</label>
-                                <input type="text" class="form-control" data-mask="000.000.000-00" id="senderCPF" name="senderCPF" required>
+                                <label for="sender_cpf">CPF:</label>
+                                <input type="text" class="form-control" data-mask="000.000.000-00" id="sender_cpf" name="sender_cpf" required>
                             </div>
                         </div>
 
@@ -68,12 +68,12 @@
                             <div class="form-group">
                                 <label for="senderCPF">Forma de Doação:</label>
                                 <div class="custom-control custom-radio">
-                                    <input id="boleto" onclick="sendHash()" name="paymentMethod" type="radio" value="boleto" class="custom-control-input" required>
+                                    <input id="boleto" onclick="sendHash()" name="payment_method" type="radio" value="boleto" class="custom-control-input" required>
                                     <label class="custom-control-label"  for="boleto">Boleto</label>
                                 </div>
 
                                 <div class="custom-control custom-radio">
-                                    <input id="credito"  onclick="sendHash()"  name="paymentMethod" type="radio" value="creditCard" class="custom-control-input"  required>
+                                    <input id="credito"  onclick="sendHash()"  name="payment_method" type="radio" value="creditCard" class="custom-control-input"  required>
                                     <label class="custom-control-label"  for="credito">Cartão de crédito</label>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                 <div class="col-md-4 probootstrap-animate">
                                     <div class="form-group"">
                                         <div class="card-operator ">
-                                            <input id="brand" name="brand" type="radio" value="visa" class="custom-control-input"  required>
+                                            <input id="brand" name="brand" type="radio" value="visa" class="custom-control-input"  >
                                             <label class="custom-control-label"  for="brand"><img alt="Visa" src="{{ url('storage/img/brand/visa.png') }}"></label>
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@
                                 <div class="col-md-4 probootstrap-animate">
                                     <div class="form-group"">
                                         <div class="card-operator">
-                                            <input id="brand" name="brand" type="radio" value="master" class="custom-control-input"  required>
+                                            <input id="brand" name="brand" type="radio" value="master" class="custom-control-input"  >
                                             <label class="custom-control-label"  for="brand"><img alt="Maste" src="{{ url('storage/img/brand/master.png') }}"></label>
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@
                                 <div class="col-md-4 probootstrap-animate">
                                     <div class="form-group"">
                                         <div class="card-operator">
-                                            <input id="brand" name="brand" type="radio" value="elo" class="custom-control-input"  required>
+                                            <input id="brand" name="brand" type="radio" value="elo" class="custom-control-input"  >
                                             <label class="custom-control-label"  for="brand"><img alt="Elo" src="{{ url('storage/img/brand/elo.png') }}"></label>
                                         </div>
                                     </div>
@@ -142,8 +142,8 @@
 
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="senderName">Titular do Cartão:</label>
-                                        <input type="text" class="form-control" id="senderName" name="senderName">
+                                        <label for="sender_name">Titular do Cartão:</label>
+                                        <input type="text" class="form-control" id="sender_name" name="sender_name">
                                     </div>
                                 </div>
 
@@ -176,7 +176,6 @@
     <script>
             function sendHash(){
                 var hash = $('#senderHash').val(PagSeguroDirectPayment.getSenderHash());
-                console.log(hash);
                 PagSeguroDirectPayment.setSessionId('{{ PagSeguro::startSession() }}'); //PagSeguroRecorrente tem um método identico, use o que preferir neste caso, não tem diferença.
             };
 
@@ -203,8 +202,8 @@
                 });
             };
 
-            $('input[name="paymentMethod"]').change(function () {
-                if ($('input[name="paymentMethod"]:checked').val() === "creditCard") {
+            $('input[name="payment_method"]').change(function () {
+                if ($('input[name="payment_method"]:checked').val() === "creditCard") {
                     $('#card').show();
                         activeInput(false)
                 } else {
@@ -220,13 +219,19 @@
                 $( "#expirationMonth" ).prop( "disabled", result );
                 $( "#expirationYear" ).prop( "disabled", result );
                 $( "#cvv" ).prop( "disabled", result );
-                $( "#senderName" ).prop( "disabled", result );
+                $( "#sender_name" ).prop( "disabled", result );
             }
 
         </script>
 
         <script>
-            $("#itemAmount").maskMoney();
+            $("#item_amount").maskMoney();
+        </script>
+
+        <script>
+            $(".btnAmount").on('click', function(){
+                $("#item_amount").val($(this).val());
+           })
         </script>
 @endpush
 

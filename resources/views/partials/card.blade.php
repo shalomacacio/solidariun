@@ -14,7 +14,7 @@
         <div class="col-md-6 col-sm-6 col-xs-6 probootstrap-goal">Meta: <span>R$ <br/> {{ $campanha->meta }}</span></div>
       </div>
 
-      <h2><a href="{{ route('campanhas.show', $campanha->id) }}">{{ isset($campanha->title)?$campanha->title: null }}</a></h2>
+      <div class="text-center"><h2><a href="{{ route('campanhas.show', $campanha->id) }}">{{ isset($campanha->title)?$campanha->title: null }}</a></h2></div>
       <div class="probootstrap-date"><i class="icon-calendar"></i>Faltam {{ isset($campanha->tempo)?$campanha->tempo: null }}</div>
 
       <p><div>{{ isset($campanha->description_short)? $campanha->description_short : null }}</div></p>
