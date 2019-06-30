@@ -11,7 +11,7 @@
 
             <div class="jumbotron col-md-8 col-sm-8 probootstrap-animate">
               <div class="row ">
-                    <form class="probootstrap-form" method="POST" action="{{ route('payments.pay') }}" enctype="multipart/form-data" >
+                    <form class="probootstrap-form" method="POST" action="{{ route('payments.store') }}" enctype="multipart/form-data" >
                     @csrf
                         <div class="col-md-12">
                             <label for="item_amount">Quero contribuir com:</label>

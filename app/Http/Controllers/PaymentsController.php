@@ -83,12 +83,14 @@ class PaymentsController extends Controller
     {
         try {
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-            $payment = $this->repository->create($request);
+            $payment = $this->repository->create($request->all());
 
             $response = [
                 'message' => 'Payment created.',
                 'data'    => $payment->toArray(),
             ];
+
+            $this->pay($response);
 
             if ($request->wantsJson()) {
 
@@ -172,6 +174,8 @@ class PaymentsController extends Controller
                 'data'    => $payment->toArray(),
             ];
 
+            return dd($response);
+
             if ($request->wantsJson()) {
 
                 return response()->json($response);
@@ -222,11 +226,10 @@ class PaymentsController extends Controller
     }
 
 
-    public function pay(PaymentCreateRequest $request)
+    public function pay($request)
     {
-        $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-        $pagseguro = PagSeguro::setReference($request->campanha_id)
+        return dd($request['data']['id']);
+        $pagseguro = PagSeguro::setReference($request->data()->id)
         ->setSenderInfo([
           'senderName' => $request->name, //Deve conter nome e sobrenome
           'senderPhone' => $request->sender_phone, //'(85) 98704-7679', //Código de área enviado junto com o telefone
@@ -287,6 +290,7 @@ class PaymentsController extends Controller
     public function notifications(Request $request ){
         header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
         $result = PagSeguro::notification($request->notificationCode, $request->notificationType);
-        Log::info('Notific: '.$result );
+        Log::info('Notific: '.$result->status );
+        Log::info("Tipo:".gettype($result));
     }
 }
