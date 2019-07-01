@@ -12,6 +12,11 @@ use Solidariun\Http\Requests\CampanhaUpdateRequest;
 use Solidariun\Repositories\CampanhaRepository;
 use Solidariun\Validators\CampanhaValidator;
 
+use Image;
+use Input;
+
+
+
 /**
  * Class CampanhasController.
  *
@@ -91,10 +96,12 @@ class CampanhasController extends Controller
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
+            //cria um nome para imagem realiza upload
             $imageName = time().'.'.request()->img->getClientOriginalExtension();
-            //request()->img->storeAs('img/campanha', $imageName);
-            $upload = $request->img->storeAs('img/campanha', $imageName);
+            $upload = $request->img->storeAs('img/campanha', $imageName );
+            //recupera o path e redimensiona
+            $thumbnailpath = public_path('storage/img/campanha/'.$imageName);
+            $img = Image::make($thumbnailpath)->resize(600, 303)->save($thumbnailpath);
 
             $input = $request->all();
             $input['img'] = $imageName;
