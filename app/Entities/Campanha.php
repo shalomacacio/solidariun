@@ -87,5 +87,12 @@ class Campanha extends Model implements Transformable
         'goal' => 'float',
     ];
 
+    //relationships
+
+    public function payments(){
+        return $this->hasMany('Solidariun\Entities\Payment', 'campanha_id');
+    }
+
+
 
 }

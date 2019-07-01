@@ -81,6 +81,7 @@ class PaymentsController extends Controller
 
     public function store(PaymentCreateRequest $request)
     {
+        // return dd($request);
         try {
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
             $payment = $this->repository->create($request->all());
@@ -90,7 +91,7 @@ class PaymentsController extends Controller
                 'data'    => $payment->toArray(),
             ];
 
-            $this->pay($response);
+            $this->pay($payment);
 
             if ($request->wantsJson()) {
 
@@ -219,70 +220,65 @@ class PaymentsController extends Controller
         return redirect()->back()->with('message', 'Payment deleted.');
     }
 
-    public function currency($valor){
-        $valor = str_replace("." , "" , $valor ); // Primeiro tira os pontos
-        $valor = str_replace("," , "." , $valor); // Depois tira a vírgula
-        return number_format($valor,2,".","");
-    }
-
-
     public function pay($request)
     {
-        return dd($request['data']['id']);
-        $pagseguro = PagSeguro::setReference($request->data()->id)
+        // return dd($request);
+        $pagseguro = PagSeguro::setReference($request->id)
         ->setSenderInfo([
           'senderName' => $request->name, //Deve conter nome e sobrenome
           'senderPhone' => $request->sender_phone, //'(85) 98704-7679', //Código de área enviado junto com o telefone
           'senderEmail' => $request->sender_email,
-          'senderHash' => $request->senderHash,
+          'senderHash' => $request->sender_hash,
           'senderCPF' => $request->sender_cpf,  //Ou CNPJ se for Pessoa Júridica
         ])
         ->setCreditCardHolder([
-          'creditCardHolderBirthDate' => Carbon::parse( $request->creditCardHolderBirthDate)->format('d/m/Y'),  //'10/02/2000',
+          'creditCardHolderBirthDate' => Carbon::parse( $request->creditcard_holderbirthdate)->format('d/m/Y'),  //'10/02/2000',
         ])
         ->setShippingAddress([
           'shippingAddressStreet' => 'Não informado',
           'shippingAddressNumber' => 'Não informado',
           'shippingAddressDistrict' => 'Não informado',
-          'shippingAddressPostalCode' => '12345-678',
+          'shippingAddressPostalCode' => '61946-085',
           'shippingAddressCity' => 'Não informado',
           'shippingAddressState' => 'CE'
         ])
         ->setItems([
           [
             'itemId' => '1',
-            'itemDescription' => $request->campanha_title,
-            'itemAmount' => $this->currency($request->item_amount), //Valor unitário
+            'itemDescription' => $request->campanha->title,
+            'itemAmount' => $request->item_amount, //Valor unitário
             'itemQuantity' => '1', // Quantidade de itens
           ]
         ])
         ->send([
           'paymentMethod' => $request->payment_method,
-          'creditCardToken' => $request->creditCardToken,
+          'creditCardToken' => $request->creditcard_token,
           'installmentQuantity' => '1',
-          'installmentValue' => $this->currency($request->item_amount), //apenas se for parcelado
+          'installmentValue' => $request->item_amount, //apenas se for parcelado
         ]);
 
         // return $pagseguro;
          //$pagseguro->paymentLink;
 
          //se houver retorno do pagseguro grava no bando
-         if($pagseguro ){
-            $input = $request->all();
-            $input['code'] = $pagseguro->code;
-            $input['status'] = $pagseguro->status;
+        //  if($pagseguro ){
+        //     $input = $request->all();
+        //     $input['code'] = $pagseguro->code;
+        //     $input['status'] = $pagseguro->status;
+        //     $input['payment_method'] = $pagseguro->paymentMethod;
 
-             if($request->paymentMethod == "boleto"){
-                $input['payment_link'] = $pagseguro->paymentLink;
-             }
+        //      if($request->paymentMethod == "boleto"){
+        //         $input['payment_link'] = $pagseguro->paymentLink;
+        //      }
 
-             $payment = $this->repository->create($input);
-             $response = [
-                'message' => 'Payment created.',
-                'data'    => $payment->toArray(),
-            ];
-             return redirect()->back()->with('message', $response['message']);
-         }
+        //     //  $payment = $this->repository->update($input, $pagseguro->reference);
+        //      $payment = $this->repository->update($input, $result->reference);
+        //      $response = [
+        //         'message' => 'Transação realizada.',
+        //         'data'    => $payment->toArray(),
+        //     ];
+        //      return redirect()->back()->with('message', $response['message']);
+        //  }
 
     }
 
@@ -290,7 +286,11 @@ class PaymentsController extends Controller
     public function notifications(Request $request ){
         header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
         $result = PagSeguro::notification($request->notificationCode, $request->notificationType);
-        Log::info('Notific: '.$result->status );
-        Log::info("Tipo:".gettype($result));
+        Log::debug($result->reference);
+        $pagseguro['code'] = $result->code;
+        $pagseguro['status'] = $result->status;
+        $pagseguro['payment_link'] = $result->paymentLink;
+        $pagseguro['item_amount'] = $result->grossAmount;
+        $payment = $this->repository->update($pagseguro, $result->reference);
     }
 }

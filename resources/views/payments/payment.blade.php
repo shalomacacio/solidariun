@@ -45,8 +45,8 @@
 
                         <div class="col-md-4 probootstrap-animate">
                             <div class="form-group">
-                                <label for="creditCardHolderBirthDate">Data de Nascimento:</label>
-                                <input type="date" class="form-control" id="creditCardHolderBirthDate" name="creditCardHolderBirthDate" required>
+                                <label for="creditcard_holderbirthdate">Data de Nascimento:</label>
+                                <input type="date" class="form-control" id="creditcard_holderbirthdate" name="creditcard_holderbirthdate" required>
                             </div>
                         </div>
 
@@ -150,9 +150,8 @@
                             </div>
                         </div>
                         <input type="hidden" class="form-control" id="campanha_id" name="campanha_id" value="{{$campanha->id}}">
-                        <input type="hidden" class="form-control" id="campanha_title" name="campanha_title" value="{{$campanha->title}}">
-                        <input type="hidden" class="form-control" id="creditCardToken" name="creditCardToken">
-                        <input type="hidden" class="form-control" id="senderHash" name="senderHash">
+                        <input type="hidden" class="form-control" id="creditcard_token" name="creditcard_token">
+                        <input type="hidden" class="form-control" id="sender_hash" name="sender_hash">
 
                         <div class="col-md-4 "></div>
                         <div class="col-md-8 ">
@@ -175,7 +174,7 @@
 
     <script>
             function sendHash(){
-                var hash = $('#senderHash').val(PagSeguroDirectPayment.getSenderHash());
+                var hash = $('#sender_hash').val(PagSeguroDirectPayment.getSenderHash());
                 PagSeguroDirectPayment.setSessionId('{{ PagSeguro::startSession() }}'); //PagSeguroRecorrente tem um método identico, use o que preferir neste caso, não tem diferença.
             };
 

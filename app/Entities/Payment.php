@@ -7,6 +7,7 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use Illuminate\Support\Str;
 
+
 /**
  * Class Payment.
  *
@@ -34,6 +35,35 @@ class Payment extends Model implements Transformable
         'sender_phone',
         'sender_email',
         'sender_cpf',
+        'sender_hash',
+        'creditcard_token',
+
+        'creditcard_holderbirthdate',
+        'shippigaddress_street',
+        'shippigaddress_number',
+        'shippigaddress_district',
+        'shippigaddress_postalcode',
+        'shippigaddress_city',
+        'shippigaddress_state',
+
     ];
+    //mutators
+    public function setItemAmountAttribute($value) {
+        $valor = str_replace("." , "" , $value ); // Primeiro tira os pontos
+        $valor = str_replace("," , "." , $value); // Substitui a virgular por ponto
+        return $this->attributes['item_amount'] = number_format($valor,2,".","");
+    }
+
+
+    //relationships
+    public function campanha()
+    {
+        return $this->belongsTo('Solidariun\Entities\Campanha');
+    }
+
+    //casts
+    // protected $casts = [
+    //     'item_amount' => 'decimal',
+    // ];
 
 }
