@@ -56,9 +56,13 @@ class Campanha extends Model implements Transformable
 
     public function getArrecadadoAttribute()
     {
-        $value = $this->attributes['reached'];
-        //$result = Str::replaceArray('.', [','], $value );
-        $result = number_format($value,2, ',','.');
+        $result = $this->payments->where('status','3')->sum('item_amount');
+         return number_format($result,2, ',','.');
+    }
+
+        public function getReachedAttribute()
+    {
+        $result = $this->payments->where('status','3')->sum('item_amount');
          return $result;
     }
 
@@ -69,7 +73,8 @@ class Campanha extends Model implements Transformable
 
     public function getPercentAttribute()
     {
-        return (100/$this->goal ) * $this->reached;
+        $result = (100/$this->goal ) * $this->reached;
+        return number_format($result,2);
     }
 
     public function getTempoAttribute()
@@ -88,11 +93,8 @@ class Campanha extends Model implements Transformable
     ];
 
     //relationships
-
     public function payments(){
         return $this->hasMany('Solidariun\Entities\Payment', 'campanha_id');
     }
-
-
 
 }

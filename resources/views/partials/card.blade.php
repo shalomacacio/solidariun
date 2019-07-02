@@ -18,7 +18,7 @@
       <div class="probootstrap-date"><i class="icon-calendar"></i>Faltam {{ isset($campanha->tempo)?$campanha->tempo: null }}</div>
 
       <p><div>{{ isset($campanha->description_short)? $campanha->description_short : null }}</div></p>
-      <p><a href="{{ route('payment', $campanha->id) }}" class="btn btn-primary btn-lg">Solidarizar-se !</a></p>
+      <div class="text-center"><p><a href="{{ route('payment', $campanha->id) }}" class="btn btn-primary btn-lg btn-block">Solidarizar-se !</a></p></div>
 
     </div>
   </div>

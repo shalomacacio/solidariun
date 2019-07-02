@@ -54,4 +54,9 @@ class User extends Authenticatable
 		$this->attributes['password'] = env('PASSWORD_HASH') ? Hash::make($value) : $value;
     }
 
+    //relationships
+    public function campanhas(){
+        return $this->hasMany('Solidariun\Entities\Campanha');
+    }
+
 }
