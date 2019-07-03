@@ -74,7 +74,7 @@ class Campanha extends Model implements Transformable
     public function getPercentAttribute()
     {
         $result = (100/$this->goal ) * $this->reached;
-        return number_format($result,2);
+        return number_format($result,1);
     }
 
     public function getTempoAttribute()

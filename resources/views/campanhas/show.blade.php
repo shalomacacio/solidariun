@@ -11,6 +11,7 @@
             <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
                 <h2>{{ $campanha->title }}</h2>
                 <p>{{ $campanha->description_short }}</p>
+                <div class="fb-share-button" data-href="http://www.solidariun.com.br/campanhas/{{$campanha->id}}" data-layout="button_count"> </div>
             </div>
           </div>
           <div class="row probootstrap-gutter60">
@@ -25,20 +26,33 @@
                 </div>
               </div>
               <p>{{ $campanha->description }}
-
-              <div class="row">
-                <div class="col-md-6">
-                  <p><a href="img/img_sq_6.jpg" class="image-popup"><img src="{{ url("storage/img/campanha/{$campanha->img}") }}" alt="img-campanha" class="img-responsive"></a></p>
-                </div>
-                <div class="col-md-6">
-                  <p><a href="img/img_sq_6.jpg" class="image-popup"><img src="{{ url("storage/img/campanha/{$campanha->img}") }}" alt="img-campanha" class="img-responsive"></a></p>
-                    </div>
-              </div>
               <p><a href="{{ route('payment', $campanha->id) }}" class="btn btn-primary btn-block">Solidarizar-se !</a></p>
             </div>
             @include('partials.card')
           </div>
         </div>
       </section>
+
+      @push('headers')
+      <meta property="fb:app_ids"     content="648912868869156" />
+      <meta property="og:type"        content="website" />
+      <meta property="og:url"         content="http://www.solidariun.com.br/campanhas/{{$campanha->id}}" />
+      <meta property="og:title"       content="{{$campanha->title}} " />
+      <meta property="og:description" content="{{$campanha->description_short}}" />
+      <meta property="og:image"       content="http://solidariun.com.br/storage/img/campanha/{{$campanha->img}}" />
+      <meta property="og:site_name"   content="Solidariun | solidariun.com.br"/>
+      @endpush
+
+      @push('scripts')
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+      @endpush
+
 
 @endsection
