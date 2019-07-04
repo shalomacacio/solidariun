@@ -156,7 +156,7 @@
                         <div class="col-md-4 "></div>
                         <div class="col-md-8 ">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block btn-lg"> Contribuir </button>
+                                <button type="submit" class="btn btn-primary btn-block btn-lg"> Confirmar </button>
                             </div>
                         </div>
                     </form>

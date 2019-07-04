@@ -2,7 +2,7 @@
 <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 probootstrap-animate" data-animate-effect="fadeIn">
   <div class="probootstrap-image-text-block probootstrap-cause">
     <figure>
-      <img src="{{ url("storage/img/campanha/{$campanha->img}") }}" alt="img-campanha" class="img-responsive" width="600" height="303">
+        <a href="{{ route('campanhas.show', $campanha->id) }}"><img src="{{ url("storage/img/campanha/{$campanha->img}") }}" alt="img-campanha" class="img-responsive" width="600" height="303"></a>
     </figure>
     <div class="probootstrap-cause-inner">
       <div class="progress">
@@ -23,7 +23,7 @@
       </div>
       <div class="probootstrap-date"><i class="icon-calendar"></i>Faltam {{ isset($campanha->tempo)?$campanha->tempo: null }}</div>
       <p><div>{{ isset($campanha->description_short)? $campanha->description_short : null }}</div></p>
-      <div class="text-center"><p><a href="{{ route('payment', $campanha->id) }}" class="btn btn-primary btn-lg btn-block">Solidarizar-se !</a></p></div>
+      <div class="text-center"><p><a href="{{ route('payment', $campanha->id) }}" class="btn btn-primary btn-lg btn-block"> Doar !</a></p></div>
     </div>
   </div>
 </div>

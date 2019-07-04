@@ -24,8 +24,9 @@ class CreateCampanhasTable extends Migration
             $table->dateTime('dt_final')->notNul();
             $table->string('img')->notNul();
             $table->string('movie')->notNul();
-            $table->tinyInteger('flg_active')->default(1);
+            $table->tinyInteger('flg_active')->notNul()->default(0);
             $table->integer('category_id')->notNul();
+            $table->integer('status')->notNul()->default(0);
             $table->integer('user_id')->notNul();
             $table->timestamps();
 		});

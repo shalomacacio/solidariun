@@ -11,7 +11,7 @@
             <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
                 <h2>{{ $campanha->title }}</h2>
                 <p>{{ $campanha->description_short }}</p>
-                <div class="fb-share-button" data-href="http://www.solidariun.com.br/campanhas/{{$campanha->id}}" data-layout="button_count"> </div>
+                <div class="fb-share-button" data-href="http://www.solidariun.com/campanhas/{{$campanha->id}}" data-layout="button_count"> </div>
             </div>
           </div>
           <div class="row probootstrap-gutter60">
@@ -36,11 +36,11 @@
       @push('headers')
       <meta property="fb:app_ids"     content="648912868869156" />
       <meta property="og:type"        content="website" />
-      <meta property="og:url"         content="http://www.solidariun.com.br/campanhas/{{$campanha->id}}" />
+      <meta property="og:url"         content="http://www.solidariun.com/campanhas/{{$campanha->id}}" />
       <meta property="og:title"       content="{{$campanha->title}} " />
       <meta property="og:description" content="{{$campanha->description_short}}" />
-      <meta property="og:image"       content="http://solidariun.com.br/storage/img/campanha/{{$campanha->img}}" />
-      <meta property="og:site_name"   content="Solidariun | solidariun.com.br"/>
+      <meta property="og:image"       content="http://solidariun.com/storage/img/campanha/{{$campanha->img}}" />
+      <meta property="og:site_name"   content="Solidariun | solidariun.com"/>
       @endpush
 
       @push('scripts')

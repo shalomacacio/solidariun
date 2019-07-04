@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'CampanhasController@home')->name('site');
+Route::get('/campanhas/minhascampanhas', 'CampanhasController@minhascampanhas')->name('minhascampanhas');
 Route::get('/campanhas/recentes', 'CampanhasController@recentes');
 Route::resource('campanhas', 'CampanhasController');
 

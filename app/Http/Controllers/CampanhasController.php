@@ -11,9 +11,10 @@ use Solidariun\Http\Requests\CampanhaCreateRequest;
 use Solidariun\Http\Requests\CampanhaUpdateRequest;
 use Solidariun\Repositories\CampanhaRepository;
 use Solidariun\Validators\CampanhaValidator;
-
+use Auth;
 use Image;
 use Input;
+
 
 
 
@@ -232,5 +233,15 @@ class CampanhasController extends Controller
         }
 
         return redirect()->back()->with('message', 'Campanha deleted.');
+    }
+
+    public function minhasCampanhas(){
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        $campanhas = $this->repository->scopeQuery(function($query){
+            return $query
+                ->where('user_id', Auth::user()->id);
+        })->all();
+
+        return view('campanhas.minhascampanhas', compact('campanhas'));
     }
 }

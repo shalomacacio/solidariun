@@ -17,6 +17,7 @@
               <li class="dropdown">
                   <a href="{{ route('campanhas.index') }}">Campanhas</a>
                   <ul class="dropdown-menu">
+                        <li><a href="{{ route('campanhas.index') }}">Todas as Campanhas</a></li>
                     <li><a href="{{ route('campanhas.create') }}">Criar Campanha</a></li>
                   </ul>
                 </li>
@@ -28,7 +29,7 @@
                     <a href="{{ route('login') }}">{{ Auth::user()->name }}</a>
                 <ul class="dropdown-menu">
                   <li><a href="{{ route('users.show', Auth::user()->id)}}">Meus Dados</a></li>
-                  <li><a href="#">Minhas Campanhas</a></li>
+                  <li><a href="{{ route('minhascampanhas')}}">Minhas Campanhas</a></li>
                   <li><a href="{{ route('logout') }}">Sair</a></li>
                 </ul>
               </li>
