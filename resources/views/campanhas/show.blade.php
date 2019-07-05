@@ -11,7 +11,9 @@
             <div class="col-md-12 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
                 <h2>{{ $campanha->title }}</h2>
                 <p>{{ $campanha->description_short }}</p>
-                <div class="fb-share-button" data-href="http://www.solidariun.com/campanhas/{{$campanha->id}}" data-layout="button_count"> </div>
+                <div class="fb-share-button" data-href="http://www.solidariun.com/campanhas/{{$campanha->id}}" data-layout="button_count" data-size="large">
+                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsolidariun.com%2Fcampanhas%2F{{$campanha->id}}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartilhar</a>
+                </div>
             </div>
           </div>
           <div class="row probootstrap-gutter60">
@@ -49,10 +51,9 @@
               var js, fjs = d.getElementsByTagName(s)[0];
               if (d.getElementById(id)) return;
               js = d.createElement(s); js.id = id;
-              js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+              js.src = "https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v3.3";
               fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
       @endpush
-
 
 @endsection

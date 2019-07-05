@@ -31,7 +31,7 @@
                           <td>{{$campanha->title}}</td>
                           <td>{{$campanha->arrecadado}}</td>
                           <td>{{$campanha->meta}}</td>
-                          <td>ATIVA</td>
+                          <td>{{$campanha->status}}</td>
                           <td>{{$campanha->created_at}}</td>
                           <td>
                             <a class="btn btn-sm btn-primary" href="{{ route('campanhas.edit', $campanha->id) }}"> Editar    </i></a>
