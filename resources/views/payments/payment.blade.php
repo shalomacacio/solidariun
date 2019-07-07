@@ -15,7 +15,7 @@
                     @csrf
                         <div class="col-md-12">
                             <label for="item_amount">Quero contribuir com:</label>
-                            <div class="input-group mb-3">
+                            <div class="input-group">
                                     <div class="input-group-prepend" >
                                         <span class="input-group-text">R$</span>
                                     </div>
